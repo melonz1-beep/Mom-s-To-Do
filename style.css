@@ -12,174 +12,6 @@
 --cream:#fff8ec;
 }
 
-h1{
-margin:0;
-font-size:2.2rem;
-font-weight:800;
-}
-
-header p{
-margin:6px 0 0;
-font-size:1.05rem;
-color:#7d687f;
-}
-
-main{
-max-width:1100px;
-margin:auto;
-padding:18px;
-}
-
-.panel,.card{
-background:rgba(255,255,255,.82);
-backdrop-filter:blur(10px);
-border:1px solid #f0dff2;
-border-radius:24px;
-padding:18px;
-box-shadow:0 6px 20px #00000010;
-margin-bottom:18px;
-}
-
-.tabs{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:14px 0;
-}
-
-.tabs button{
-background:#f6ebfa;
-color:#6b5871;
-border:none;
-padding:12px 18px;
-border-radius:999px;
-font-weight:700;
-}
-
-.tabs button.active{
-background:#c8a2d6;
-color:white;
-}
-
-button{
-border:none;
-background:#c8a2d6;
-color:white;
-padding:12px 18px;
-border-radius:16px;
-font-weight:700;
-cursor:pointer;
-}
-
-button:hover{
-opacity:.92;
-}
-
-input,select,textarea{
-width:100%;
-padding:12px;
-border-radius:14px;
-border:1px solid #e8d7ef;
-background:white;
-font:inherit;
-color:var(--text);
-}
-
-textarea{
-min-height:90px;
-}
-
-.grid{
-display:grid;
-gap:14px;
-}
-
-.two{
-grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin:10px 0 20px;
-}
-
-.stats div{
-background:white;
-border-radius:22px;
-padding:18px;
-text-align:center;
-box-shadow:0 4px 14px #00000008;
-}
-
-.stats strong{
-display:block;
-font-size:2rem;
-color:#8b5ea7;
-}
-
-.stats span{
-color:#8c7c8f;
-}
-
-.cards{
-display:grid;
-gap:14px;
-}
-
-.badge{
-display:inline-block;
-padding:6px 12px;
-border-radius:999px;
-font-size:.8rem;
-font-weight:700;
-margin:4px;
-background:#f4ebf8;
-color:#7c6288;
-}
-
-.actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-top:14px;
-}
-
-.photo{
-max-width:100%;
-border-radius:18px;
-margin-top:10px;
-}
-
-.small{
-font-size:.92rem;
-color:#8d7f91;
-}
-
-@media(max-width:700px){
-
-header{
-flex-direction:column;
-align-items:flex-start;
-}
-
-.two,
-.stats{
-grid-template-columns:1fr;
-}
-
-.tabs{
-flex-wrap:wrap;
-}
-
-main{
-padding:12px;
-}
-
-.panel,.card{
-border-radius:18px;
-  
 *{box-sizing:border-box}
 
 body{
@@ -210,6 +42,85 @@ justify-content:space-between;
 gap:12px;
 align-items:center;
 border-bottom:4px solid #eadcf5;
-box-shadow:0 2px 12px #00000010;}
+box-shadow:0 2px 12px #00000010;
+}
 
+h1{margin:0;font-size:2.2rem;font-weight:800}
+header p{margin:6px 0 0;font-size:1.05rem;color:#7d687f}
+main{max-width:1100px;margin:auto;padding:18px}
+
+.panel,.card{
+background:rgba(255,255,255,.82);
+border:1px solid #f0dff2;
+border-radius:24px;
+padding:18px;
+box-shadow:0 6px 20px #00000010;
+margin-bottom:18px;
+}
+
+.tabs{display:flex;gap:10px;overflow-x:auto;padding:14px 0}
+.tabs button{background:#f6ebfa;color:#6b5871;border:none;padding:12px 18px;border-radius:999px;font-weight:700}
+.tabs button.active{background:#c8a2d6;color:white}
+
+button{border:none;background:#c8a2d6;color:white;padding:12px 18px;border-radius:16px;font-weight:700;cursor:pointer}
+button:hover{opacity:.92}
+
+input,select,textarea{
+width:100%;
+padding:12px;
+border-radius:14px;
+border:1px solid #e8d7ef;
+background:white;
+font:inherit;
+color:var(--text);
+}
+
+textarea{min-height:90px}
+.grid{display:grid;gap:14px}
+.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin:10px 0 20px;
+}
+
+.stats div{
+background:white;
+border-radius:22px;
+padding:18px;
+text-align:center;
+box-shadow:0 4px 14px #00000008;
+}
+
+.stats strong{display:block;font-size:2rem;color:#8b5ea7}
+.stats span{color:#8c7c8f}
+.cards{display:grid;gap:14px}
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+font-size:.8rem;
+font-weight:700;
+margin:4px;
+background:#f4ebf8;
+color:#7c6288;
+}
+
+.card.pastdue{background:#ffe9ee;border:2px solid #ff7b9c}
+.card.completed{background:#edf8ea}
+
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.photo{max-width:100%;border-radius:18px;margin-top:10px}
+.small{font-size:.92rem;color:#8d7f91}
+
+@media(max-width:700px){
+header{flex-direction:column;align-items:flex-start}
+.two,.stats{grid-template-columns:1fr}
+.tabs{flex-wrap:wrap}
+main{padding:12px}
+.panel,.card{border-radius:18px}
+}
 
