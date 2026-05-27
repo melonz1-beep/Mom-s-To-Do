@@ -8,6 +8,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyAAgRAGO9YVZ-1KoAUNnfZJxOOnqCXPSD4",
   authDomain: "mom-s-to-do-62197.firebaseapp.com",
   databaseURL: "https://mom-s-to-do-62197-default-rtdb.firebaseio.com",
+  databaseURL: "https://mom-s-to-do-62197-default-rtdb.firebaseio.com",
   projectId: "mom-s-to-do-62197",
   storageBucket: "mom-s-to-do-62197.firebasestorage.app",
   messagingSenderId: "590361681893",
