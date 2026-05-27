@@ -130,37 +130,25 @@
 <label class="checkbox">
   <input type="checkbox" id="purchased" />
   Materials Purchased
-</label> 
-</div>
-  
-          <label>Estimated cost<input id="cost" type="number" min="0" step="0.01" placeholder="0.00" /></label>
+</label>
+
+<label>
+  Contractor quotes
+  <textarea id="quotes" placeholder="Contractor name, quote amount, phone, notes..."></textarea>
+</label>
+
+<label>
+  Photo URL
+  <input id="photoUrl" placeholder="Paste an image link for now" />
+</label>
+
+<button type="submit">Add Task</button>
+
+<label>Estimated cost<input id="cost" type="number" min="0" step="0.01" placeholder="0.00" /></label>
         </div>
 
         <label>Contractor quotes<textarea id="quotes" placeholder="Contractor name, quote amount, phone, notes..."></textarea></label>
-        <label>Photo URL<input id="photoUrl" placeholder="Paste an image link for now" /></label>
-        <button type="submit">Add Task</button>
-      </form>
-    </section>
-
-    <section id="members" class="tab">
-      <form id="memberForm" class="panel">
-        <h2>Add member</h2>
-
-        <div class="grid two">
-          <label>Name<input id="memberName" required /></label>
-          <label>Role
-            <select id="memberRole">
-              <option>Self</option>
-              <option>Contractor</option>
-              <option>Other</option>
-            </select>
-          </label>
-        </div>
-
-        <label>Contact info<input id="memberContact" placeholder="Phone or email" /></label>
-        <label>Profile Photo URL<input id="memberPhoto" placeholder="Paste photo link" /></label>
-        <button type="submit">Add Member</button>
-      </form>
+        <label>Photo URL<input id="photoUrl" placeholder=
 
       <div id="memberList" class="cards"></div>
     </section>
