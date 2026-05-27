@@ -28,6 +28,29 @@ $("saveProfile").onclick = () => {localStorage.helpName=$("currentUser").value||
 
 document.querySelectorAll(".tabs button").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".tabs button,.tab").forEach(x=>x.classList.remove("active"));btn.classList.add("active");$(btn.dataset.tab).classList.add("active")});
 
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  const installBtn = document.createElement("button");
+  installBtn.innerText = "Install App";
+  installBtn.style.position = "fixed";
+  installBtn.style.bottom = "20px";
+  installBtn.style.right = "20px";
+  installBtn.style.zIndex = "9999";
+
+  document.body.appendChild(installBtn);
+
+  installBtn.addEventListener("click", async () => {
+    installBtn.remove();
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  });
+});
+
 onValue(tasksRef, snap => { tasks = snap.val() || {}; markPastDue(); render(); });
 onValue(membersRef, snap => { members = snap.val() || {}; renderMembers(); });
 
