@@ -61,6 +61,11 @@ onValue(membersRef, snap => {
   renderMembers();
 });
 
+onValue(contactsRef, snap => {
+  contacts = snap.val() || {};
+  renderContacts();
+});
+
 function markPastDue(){
   Object.entries(tasks).forEach(([id,t]) => {
     if(t.status !== "Completed" && t.plannedDate && t.plannedDate < today() && t.status !== "Past Due"){
