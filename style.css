@@ -12,6 +12,17 @@
 --cream:#fff8ec;
 }
 
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+url("https://www.transparenttextures.com/patterns/flowers.png");
+opacity:.05;
+pointer-events:none;
+z-index:-1
+}
+
 *{box-sizing:border-box}
 
 body{
