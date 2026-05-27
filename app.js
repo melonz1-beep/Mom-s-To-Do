@@ -20,6 +20,7 @@ const contactsRef = ref(db, "contacts");
 
 let tasks = {};
 let members = {};
+let contacts = {};
 
 const $ = id => document.getElementById(id);
 const today = () => new Date().toISOString().slice(0,10);
