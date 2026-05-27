@@ -43,20 +43,4 @@ gap:12px;
 align-items:center;
 border-bottom:4px solid #eadcf5;
 box-shadow:0 2px 12px #00000010;
-}
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-background:linear-gradient(to bottom,#fffdf7,#f8f2ff);
-color:var(--text);
-position:relative;
-min-height:100vh;
-}
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:url("https://www.transparenttextures.com/patterns/flowers.png");
-opacity:.05;
-pointer-events:none;
-z-index:-1;
-}
+
