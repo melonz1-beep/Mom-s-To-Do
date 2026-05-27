@@ -301,8 +301,11 @@ window.deleteTask = id => {
 
 window.removeMember = id => remove(ref(db,"members/"+id));
 
-$("seedBtn").onclick = () => {
-  [
+window.removeContact = id => remove(ref(db,"contacts/"+id));
+
+if($("seedBtn")){
+  $("seedBtn").onclick = () => {
+  
     ["Move wood","Stack firewood away from walkway","High Priority"],
     ["Repair window","Check broken latch and quote repair","Urgent"],
     ["Mow lawn","Front and side yard","Medium Priority"]
@@ -322,7 +325,7 @@ $("seedBtn").onclick = () => {
     plannedDate:"",
     createdAt:Date.now()
   }));
-};
+};}
 
 let deferredPrompt;
 
