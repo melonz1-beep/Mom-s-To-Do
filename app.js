@@ -58,7 +58,12 @@ function markPastDue(){Object.entries(tasks).forEach(([id,t])=>{if(t.status!=="C
 
 $("taskForm").onsubmit = e => {e.preventDefault(); const p=profile(); const newRef=push(tasksRef); set(newRef,{title:$("title").value,description:$("description").value,priority:$("priority").value,neededBy:$("neededBy").value,materials:$("materials").value,cost:$("cost").value||"",quotes:$("quotes").value,photoUrl:$("photoUrl").value,status:"Open",requestedBy:p.name,assignedTo:"",plannedDate:"",createdAt:Date.now(),completedAt:""}); e.target.reset(); alert("Task added live.");};
 
-$("memberForm").onsubmit = e => {e.preventDefault(); const r=push(membersRef); set(r,{name:$("memberName").value,role:$("memberRole").value,contact:$("memberContact").value,active:true}); e.target.reset();};
+$("memberForm").onsubmit = e => {e.preventDefault(); const r=push(membersRef);  set(r,{
+name:$("memberName").value,
+role:$("memberRole").value,
+contact:$("memberContact").value,
+photo:$("memberPhoto").value,
+active:true});e.target.reset();};
 $("filterStatus").onchange = render; $("filterPriority").onchange = render;
 
 function sortTasks(arr){const rank={"Urgent":1,"High Priority":2,"Medium Priority":3,"Low Priority":4}; return arr.sort((a,b)=>(rank[a[1].priority]||9)-(rank[b[1].priority]||9) || (a[1].neededBy||"9999").localeCompare(b[1].neededBy||"9999"));}
