@@ -134,6 +134,36 @@
       <div id="memberList" class="cards"></div>
     </section>
 
+    <section id="contacts" class="tab">
+  <form id="contactForm" class="panel">
+    <h2>Emergency Contacts</h2>
+
+    <div class="grid two">
+      <label>Name
+        <input id="contactName" required />
+      </label>
+
+      <label>Relationship
+        <input id="contactRelation" placeholder="Doctor, Daughter, Neighbor..." />
+      </label>
+    </div>
+
+    <div class="grid two">
+      <label>Phone
+        <input id="contactPhone" />
+      </label>
+
+      <label>Email
+        <input id="contactEmail" />
+      </label>
+    </div>
+
+    <button type="submit">Save Contact</button>
+  </form>
+
+  <div id="contactList" class="cards"></div>
+    </section>
+
     <section id="history" class="tab">
       <h2>Completed Task History</h2>
       <div id="historyList" class="cards"></div>
