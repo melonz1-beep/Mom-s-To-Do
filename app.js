@@ -1,15 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, push, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-const firebaseConfig = {
+6const firebaseConfig = {
   apiKey: "AIzaSyAAgRAGO9YVZ-1KoAUNnfZJxOOnqCXPSD4",
   authDomain: "mom-s-to-do-62197.firebaseapp.com",
   projectId: "mom-s-to-do-62197",
   storageBucket: "mom-s-to-do-62197.firebasestorage.app",
   messagingSenderId: "590361681893",
   appId: "1:590361681893:web:bc74365dc1a1d2998bd90c",
-  measurementId: "G-9GHWWMLK13",
-  databaseURL: "https://mom-s-to-do-62197-default-rtdb.firebaseio.com"
+  measurementId: "G-9GHWWMLK13"
 };
 
 const app = initializeApp(firebaseConfig);
