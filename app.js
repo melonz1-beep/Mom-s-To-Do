@@ -118,6 +118,21 @@ $("memberForm").onsubmit = e => {
   e.target.reset();
 };
 
+$("contactForm").onsubmit = e => {
+  e.preventDefault();
+
+  const c = push(contactsRef);
+
+  set(c,{
+    name:$("contactName").value,
+    relation:$("contactRelation").value,
+    phone:$("contactPhone").value,
+    email:$("contactEmail").value
+  });
+
+  e.target.reset();
+};
+
 $("filterStatus").onchange = render;
 $("filterPriority").onchange = render;
 
