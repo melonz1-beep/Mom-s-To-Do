@@ -77,28 +77,39 @@
     </section>
 
     <section id="members" class="tab">
-      <form id="memberForm" class="panel">
-        <h2>Add member</h2>
-        <div class="grid two">
-          <label>Name<input id="memberName" required /></label>
-          <label>Role
+  <form id="memberForm" class="panel">
+    <h2>Add member</h2>
 
-<div class="grid two">
-  <label>Name<input id="memberName" required /></label>
+    <div class="grid two">
+      <label>
+        Name
+        <input id="memberName" required />
+      </label>
 
-  <label>Role
-    <select id="memberRole">
-      <option>Mother</option>
-      <option>Daughter</option>
-      <option>Granddaughter</option>
-      <option>Great-Grandson</option>
-      <option>Spouse</option>
-      <option>Contractor</option>
-      <option>Other</option>
-    </select>
-  </label>
-</div>
+      <label>
+        Role
+        <select id="memberRole">
+          <option>Mother</option>
+          <option>Daughter</option>
+          <option>Granddaughter</option>
+          <option>Great-Grandson</option>
+          <option>Spouse</option>
+          <option>Contractor</option>
+          <option>Other</option>
+        </select>
+      </label>
+    </div>
 
+    <label>
+      Contact info
+      <input id="memberContact" placeholder="Phone or email" />
+    </label>
+
+    <button>Add Member</button>
+  </form>
+
+  <div id="memberList" class="cards"></div>
+    </section>
 
 
 
