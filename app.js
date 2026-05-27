@@ -56,7 +56,7 @@ onValue(membersRef, snap => { members = snap.val() || {}; renderMembers(); });
 
 function markPastDue(){Object.entries(tasks).forEach(([id,t])=>{if(t.status!=="Completed" && t.plannedDate && t.plannedDate < today() && t.status!=="Past Due"){update(ref(db,"tasks/"+id),{status:"Past Due"})}})}
 
-$("taskForm").onsubmit = e => {e.preventDefault(); const p=profile(); const newRef=push(tasksRef); set(newRef,{title:$("title").value,description:$("description").value,priority:$("priority").value,neededBy:$("neededBy").value,materials:$("materials").value,cost:$("cost").value||"",quotes:$("quotes").value,photoUrl:$("photoUrl").value,status:"Open",requestedBy:p.name,assignedTo:"",plannedDate:"",createdAt:Date.now(),completedAt:""}); e.target.reset(); alert("Task added live.");};
+$("taskForm").onsubmit = e => {e.preventDefault(); const p=profile(); const newRef=push(tasksRef); set(newRef,{title:$("title").value,description:$("description").value,priority:$("priority").value,neededBy:$("neededBy").value,recurring:$("recurring").value,materials:$("materials").value,cost:$("cost").value||"",quotes:$("quotes").value,photoUrl:$("photoUrl").value,status:"Open",requestedBy:p.name,assignedTo:"",plannedDate:"",createdAt:Date.now(),completedAt:""}); e.target.reset(); alert("Task added live.");};
 
 $("memberForm").onsubmit = e => {e.preventDefault(); const r=push(membersRef);  set(r,{
 name:$("memberName").value,
@@ -66,7 +66,7 @@ photo:$("memberPhoto").value,
 active:true});e.target.reset();};
 $("filterStatus").onchange = render; $("filterPriority").onchange = render;
 
-function sortTasks(arr){const rank={"Urgent":1,"High Priority":2,"Medium Priority":3,"Low Priority":4}; return arr.sort((a,b)=>(rank[a[1].priority]||9)-(rank[b[1].priority]||9) || (a[1].neededBy||"9999").localeCompare(b[1].neededBy||"9999"));}
+function sortTasks(arr){const rank={"Urgent":1,"High Priority":2,"Medium Priority":37,"Low Priority":4}; return arr.sort((a,b)=>(rank[a[1].priority]||9)-(rank[b[1].priority]||9) || (a[1].neededBy||"9999").localeCompare(b[1].neededBy||"9999"));}
 function priorityClass(p){return p.split(" ")[0]}
 function card(id,t){const isPast=t.status==="Past Due"; const isDone=t.status==="Completed"; return `<article class="card ${isPast?'pastdue':''} ${isDone?'completed':''}"><h3>${esc(t.title)}</h3><span class="badge ${priorityClass(t.priority)}">${t.priority}</span><span class="badge">${t.status}</span>${t.assignedTo?`<span class="badge assigned">Accepted By: ${esc(t.assignedTo)}</span>`:""}<p>${esc(t.description||"")}</p>${t.photoUrl?`<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">`:""}<p class="small"><b>Needed by:</b> ${t.neededBy||"Not set"} | <b>Planned:</b> ${t.plannedDate||"Not set"}</p><p class="small"><b>Materials:</b> ${esc(t.materials||"None listed")}</p><p class="small"><b>Cost:</b> ${t.cost?"$"+esc(t.cost):"Not set"}</p><p class="small"><b>Quotes:</b> ${esc(t.quotes||"None")}</p>${actions(id,t)}</article>`}
 function actions(id,t){if(t.status==="Completed") return `<div class="actions"><button onclick="restoreTask('${id}')">Restore</button></div>`; return `<div class="actions"><button onclick="acceptTask('${id}')">Accept</button><button onclick="setStatus('${id}','Started')">Started</button><button onclick="setStatus('${id}','In Progress')">In Progress</button><button onclick="reschedule('${id}')">Reschedule</button><button onclick="reassign('${id}')">Reassign</button><button onclick="completeTask('${id}')">Complete</button><button onclick="deleteTask('${id}')">Delete</button></div>`}
