@@ -1,4 +1,5 @@
-body::before{
+:root{
+  body::before{
 content:"";
 position:fixed;
 inset:0;
@@ -8,7 +9,7 @@ opacity:.05;
 pointer-events:none;
 z-index:-1
 }
-:root{
+
 --bg:#fffdf7;
 --card:#fffefb;
 --text:#5b5160;
