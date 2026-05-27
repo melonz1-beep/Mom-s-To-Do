@@ -1,4 +1,13 @@
-:root{
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+url("https://www.transparenttextures.com/patterns/flowers.png");
+opacity:.05;
+pointer-events:none;
+z-index:-1
+}:root{
 --bg:#fffdf7;
 --card:#fffefb;
 --text:#5b5160;
