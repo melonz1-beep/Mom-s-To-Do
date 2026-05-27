@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const tasksRef = ref(db, "tasks");
 const membersRef = ref(db, "members");
+const contactsRef = ref(db, "contacts");
 
 let tasks = {};
 let members = {};
