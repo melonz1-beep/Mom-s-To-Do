@@ -23,10 +23,11 @@
         <label>Your name<input id="currentUser" placeholder="Melissa, Mom, Sarah..." /></label>
         <label>Role
           <select id="currentRole">
-            <option>Self</option>            
+            <option>Self</option>
             <option>Contractor</option>
             <option>Other</option>
           </select>
+        </label>
       </div>
       <button id="saveProfile">Save profile</button>
     </section>
@@ -76,6 +77,7 @@
         <h2>Add a task</h2>
         <label>Task title<input id="title" required placeholder="Move wood, repair window, mow lawn..." /></label>
         <label>Description<textarea id="description" placeholder="Details, instructions, measurements, etc."></textarea></label>
+
         <div class="grid two">
           <label>Priority
             <select id="priority">
@@ -85,22 +87,24 @@
               <option>Low Priority</option>
             </select>
           </label>
+
           <label>Needed by<input id="neededBy" type="date" /></label>
-        
-          <label
-Recurring
-<select id="recurring">
-<option>None</option>
-<option>Daily</option>
-<option>Weekly</option>
-<option>Monthly</option>
-</select>
+
+          <label>Recurring
+            <select id="recurring">
+              <option>None</option>
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Monthly</option>
+            </select>
           </label>
         </div>
+
         <div class="grid two">
           <label>Materials needed<textarea id="materials"></textarea></label>
           <label>Estimated cost<input id="cost" type="number" min="0" step="0.01" placeholder="0.00" /></label>
         </div>
+
         <label>Contractor quotes<textarea id="quotes" placeholder="Contractor name, quote amount, phone, notes..."></textarea></label>
         <label>Photo URL<input id="photoUrl" placeholder="Paste an image link for now" /></label>
         <button type="submit">Add Task</button>
@@ -110,26 +114,26 @@ Recurring
     <section id="members" class="tab">
       <form id="memberForm" class="panel">
         <h2>Add member</h2>
+
         <div class="grid two">
           <label>Name<input id="memberName" required /></label>
           <label>Role
             <select id="memberRole">
-              <option>self</option>
+              <option>Self</option>
               <option>Contractor</option>
               <option>Other</option>
             </select>
           </label>
         </div>
+
         <label>Contact info<input id="memberContact" placeholder="Phone or email" /></label>
-        <button>Add Member</button>
+        <label>Profile Photo URL<input id="memberPhoto" placeholder="Paste photo link" /></label>
+        <button type="submit">Add Member</button>
       </form>
+
       <div id="memberList" class="cards"></div>
     </section>
 
-    <label>
-Profile Photo URL
-<input id="memberPhoto" placeholder="Paste photo link" />
-    </label>
     <section id="history" class="tab">
       <h2>Completed Task History</h2>
       <div id="historyList" class="cards"></div>
