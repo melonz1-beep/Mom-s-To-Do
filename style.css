@@ -123,3 +123,10 @@ header{flex-direction:column;align-items:flex-start}
 main{padding:12px}
 .panel,.card{border-radius:18px}
 }
+.tab{
+display:none;
+}
+
+.tab.active{
+display:block;
+}
