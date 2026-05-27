@@ -229,6 +229,28 @@ function renderMembers(){
   `).join("") || "<p>No members added yet.</p>";
 }
 
+function renderContacts(){
+  $("contactList").innerHTML =
+    Object.entries(contacts).map(([id,c]) => `
+      <article class="card">
+        <h3>${esc(c.name)}</h3>
+        <span class="badge">${esc(c.relation || "Contact")}</span>
+
+        <p class="small">
+          📞 ${esc(c.phone || "No phone")}
+        </p>
+
+        <p class="small">
+          ✉️ ${esc(c.email || "No email")}
+        </p>
+
+        <button onclick="removeContact('${id}')">
+          Remove
+        </button>
+      </article>
+    `).join("") || "<p>No emergency contacts yet.</p>";
+}
+
 function esc(v){
   return String(v || "").replace(/[&<>'"]/g, c => ({
     "&":"&amp;",
