@@ -11,36 +11,6 @@
 --yellow:#fff7d6;
 --cream:#fff8ec;
 }
-
 *{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-background:linear-gradient(to bottom,#fffdf7,#f8f2ff);
-color:var(--text);
-position:relative;
-min-height:100vh;
-}
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:url("https://www.transparenttextures.com/patterns/flowers.png");
-opacity:.05;
-pointer-events:none;
-z-index:-1;
-}
-
-header{
-background:linear-gradient(135deg,#fef1fa,#fff3c9,#f8e9f2);
-color:#5d5063;
-padding:22px 18px;
-display:flex;
-justify-content:space-between;
-gap:12px;
-align-items:center;
-border-bottom:4px solid #eadcf5;
-box-shadow:0 2px 12px #00000010;
-}
