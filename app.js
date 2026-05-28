@@ -138,7 +138,11 @@ $("taskForm").onsubmit = e => {
     materialNotes:$("materialNotes").value,
     linkedProject:$("linkedProject").value,
     cost:Array.from(document.querySelectorAll(".materialRow"))
-  .map(row => Number(row.querySelector(".matCost").value || 0))
+  .map(row => {
+    const qty = Number(row.querySelector(".matQty").value || 0);
+    const cost = Number(row.querySelector(".matCost").value || 0);
+    return qty * cost;
+  })
   .reduce((a,b) => a + b, 0)
   .toFixed(2),
     quotes:$("quotes").value,
