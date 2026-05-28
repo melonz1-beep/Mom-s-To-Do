@@ -72,78 +72,76 @@
       <div id="taskList" class="cards"></div>
     </section>
 
-    <section id="add" class="tab">
-      <form id="taskForm" class="panel">
-        <h2>Add a task</h2>
-        <label>Task title<input id="title" required placeholder="Move wood, repair window, mow lawn..." /></label>
-        <label>Description<textarea id="description" placeholder="Details, instructions, measurements, etc."></textarea></label>
+    
+<section id="add" class="tab">
+  <form id="taskForm" class="panel">
+    <h2>Add a task</h2>
 
-        <div class="grid two">
-          <label>Priority
-            <select id="priority">
-              <option>Urgent</option>
-              <option>High Priority</option>
-              <option selected>Medium Priority</option>
-              <option>Low Priority</option>
-            </select>
-          </label>
+    <label>Task title<input id="title" required placeholder="Move wood, repair window, mow lawn..." /></label>
 
-          <label>Needed by<input id="neededBy" type="date" /></label>
+    <label>Description<textarea id="description" placeholder="Details, instructions, measurements, etc."></textarea></label>
 
-          <label>Recurring
-            <select id="recurring">
-              <option>None</option>
-              <option>Daily</option>
-              <option>Weekly</option>
-              <option>Monthly</option>
-            </select>
-          </label>
-        </div>
+    <div class="grid two">
+      <label>Priority
+        <select id="priority">
+          <option>Urgent</option>
+          <option>High Priority</option>
+          <option selected>Medium Priority</option>
+          <option>Low Priority</option>
+        </select>
+      </label>
 
-          <label>
-  Materials / Shopping List
-  <textarea id="materials" placeholder="2 bags mulch, screws, paint, lumber..."></textarea>
-</label>
+      <label>Needed by<input id="neededBy" type="date" /></label>
 
-<div class="grid two">
-  <label>
-    Quantity Needed
-    <input id="materialQty" placeholder="2 bags, 10 boards, etc." />
-  </label>
+      <label>Recurring
+        <select id="recurring">
+          <option>None</option>
+          <option>Daily</option>
+          <option>Weekly</option>
+          <option>Monthly</option>
+        </select>
+      </label>
+    </div>
 
-  <label>
-  Estimated Cost
-  <input id="cost" type="number" min="0" step="0.01" placeholder="0.00" />
-  </label>
-</div>
+    <label>Materials / Shopping List
+      <textarea id="materials" placeholder="2 bags mulch, screws, paint, lumber..."></textarea>
+    </label>
 
-<label>
-  Linked Project / Task
-  <input id="linkedProject" placeholder="Porch repair, mowing, goat fence..." />
-</label>
+    <div class="grid two">
+      <label>Quantity Needed
+        <input id="materialQty" placeholder="2 bags, 10 boards, etc." />
+      </label>
 
-<label>
-  Purchase Notes
-  <textarea id="materialNotes" placeholder="Home Depot aisle, contractor recommendation, color, size, etc."></textarea>
-</label>
+      <label>Estimated Cost
+        <input id="cost" type="number" min="0" step="0.01" placeholder="0.00" />
+      </label>
+    </div>
 
-<label class="checkbox">
-  <input type="checkbox" id="purchased" />
-  Materials Purchased
-</label>
+    <label>Linked Project / Task
+      <input id="linkedProject" placeholder="Porch repair, mowing, goat fence..." />
+    </label>
 
-<label>
-  Contractor quotes
-  <textarea id="quotes" placeholder="Contractor name, quote amount, phone, notes..."></textarea>
-</label>
+    <label>Purchase Notes
+      <textarea id="materialNotes" placeholder="Home Depot aisle, contractor recommendation, color, size, etc."></textarea>
+    </label>
 
-<label>
-  Photo URL
-  <input id="photoUrl" placeholder="Paste an image link for now" />
-</label>
+    <label class="checkbox">
+      <input type="checkbox" id="purchased" />
+      Materials Purchased
+    </label>
 
-<button type="submit">Add Task</button>
+    <label>Contractor quotes
+      <textarea id="quotes" placeholder="Contractor name, quote amount, phone, notes..."></textarea>
+    </label>
 
+    <label>Photo URL
+      <input id="photoUrl" placeholder="Paste an image link for now" />
+    </label>
+
+    <button type="submit">Add Task</button>
+  </form>
+</section>
+  
 <label>Estimated cost<input id="cost" type="number" min="0" step="0.01" placeholder="0.00" /></label>
         </div>
 
