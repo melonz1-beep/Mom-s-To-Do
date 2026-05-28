@@ -280,8 +280,9 @@ function renderContacts(){
 
 function renderShopping(){
   const needed = Object.entries(tasks).filter(([id,t]) =>
-    t.materials && !t.purchased
-  );
+  (t.materials || t.materialQty || t.linkedProject || t.materialNotes || t.cost) && !t.purchased
+);
+  
 
   let total = 0;
 
