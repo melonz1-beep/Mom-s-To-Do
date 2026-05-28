@@ -438,6 +438,33 @@ window.viewTask = id => {
     "\n\nEstimated Project Cost: $" + (t.cost || "0")
   );
 };
+
+window.editShoppingItem = id => {
+  const s = shoppingItems[id];
+
+  const item = prompt("Item", s.item || "");
+  if(item === null) return;
+
+  const quantity = prompt("Quantity", s.quantity || "");
+  if(quantity === null) return;
+
+  const cost = prompt("Estimated cost", s.cost || "");
+  if(cost === null) return;
+
+  const project = prompt("Project", s.project || "");
+  if(project === null) return;
+
+  const notes = prompt("Notes", s.notes || "");
+  if(notes === null) return;
+
+  update(ref(db,"shoppingItems/"+id),{
+    item:item,
+    quantity:quantity,
+    cost:cost,
+    project:project,
+    notes:notes
+  });
+};
 window.acceptTask = id => {
   const p = profile();
   const date = prompt("Planned completion date, YYYY-MM-DD", today());
