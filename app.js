@@ -341,6 +341,8 @@ function render() {
   if ($("progressCount")) $("progressCount").textContent = active.filter(([i, t]) => ["Accepted", "Started", "In Progress"].includes(t.status)).length;
   if ($("pastDueCount")) $("pastDueCount").textContent = active.filter(([i, t]) => t.status === "Past Due").length;
   if ($("doneCount")) $("doneCount").textContent = arr.filter(([i, t]) => t.status === "Completed").length;
+  
+  renderCalendar();
 }
 
 function renderMembers() {
