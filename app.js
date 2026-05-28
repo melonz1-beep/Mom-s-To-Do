@@ -27,6 +27,32 @@ let shoppingItems = {};
 const $ = id => document.getElementById(id);
 const today = () => new Date().toISOString().slice(0,10);
 
+function addMaterialRow(name="", qty="", cost=""){
+  const row = document.createElement("div");
+
+  row.className = "materialRow";
+
+  row.innerHTML = `
+    <div class="grid three">
+      <input class="matName" placeholder="Material" value="${name}">
+      <input class="matQty" placeholder="Qty" value="${qty}">
+      <input class="matCost" type="number" step="0.01" placeholder="Cost" value="${cost}">
+    </div>
+
+    <button type="button" class="removeMat">
+      Remove
+    </button>
+  `;
+
+  row.querySelector(".removeMat").onclick = () => row.remove();
+
+  $("materialsList").appendChild(row);
+}
+
+$("addMaterialBtn").onclick = () => addMaterialRow();
+
+addMaterialRow();
+
 function profile(){
   return {
     name: localStorage.helpName || "Family Member",
@@ -105,8 +131,7 @@ $("taskForm").onsubmit = e => {
     priority:$("priority").value,
     neededBy:$("neededBy").value,
     recurring:$("recurring") ? $("recurring").value : "None",
-    materials:$("materials").value,
-    materialQty:$("materialQty").value,
+    materials:"Custom Material List",
     materialNotes:$("materialNotes").value,
     linkedProject:$("linkedProject").value,
     purchased:$("purchased").checked,
@@ -120,25 +145,29 @@ $("taskForm").onsubmit = e => {
     createdAt:Date.now(),
     completedAt:""
   });
-  const materialItems = $("materials").value
-    .split(/\n|,/)
-    .map(x => x.trim())
-    .filter(x => x);
 
-  materialItems.forEach(item => {
-    const s = push(shoppingRef);
+  document.querySelectorAll(".materialRow").forEach(row => {
 
-    set(s,{
-      item:item,
-      quantity:$("materialQty").value || "",
-      cost:$("cost").value || "",
-      project:$("linkedProject").value || $("title").value,
-      notes:$("materialNotes").value || "",
-      purchased:false,
-      taskId:newRef.key,
-      createdAt:Date.now()
-    });
+  const item = row.querySelector(".matName").value.trim();
+  const qty = row.querySelector(".matQty").value.trim();
+  const cost = row.querySelector(".matCost").value.trim();
+
+  if(!item) return;
+
+  const s = push(shoppingRef);
+
+  set(s,{
+    item:item,
+    quantity:qty,
+    cost:cost,
+    project:$("linkedProject").value || $("title").value,
+    notes:$("materialNotes").value || "",
+    purchased:false,
+    taskId:newRef.key,
+    createdAt:Date.now()
   });
+
+});
 
   e.target.reset();
   alert("Task added live.");
