@@ -158,6 +158,11 @@
   <div id="memberList" class="cards"></div>
 </section>
 
+<section id="calendar" class="tab">
+  <h2>Task Calendar</h2>
+  <div id="calendarList" class="cards"></div>
+</section>
+    
     <section id="contacts" class="tab">
   <form id="contactForm" class="panel">
     <h2>Emergency Contacts</h2>
@@ -223,21 +228,12 @@
     </section>
   </main>
 
-<script>
-document.querySelectorAll(".tabs button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const tabId = btn.dataset.tab;
-    const tab = document.getElementById(tabId);
-
-    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-
-    btn.classList.add("active");
-    tab.classList.add("active");
   });
 });
   
 </script>
+
+<input id="hiddenDatePicker" type="date" style="display:none;" />
   
   <script type="module" src="app.js"></script>
 </body>
