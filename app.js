@@ -225,7 +225,8 @@ function actions(id,t){
       <button onclick="setStatus('${id}','In Progress')">In Progress</button>
       <button onclick="reschedule('${id}')">Reschedule</button>
       <button onclick="reassign('${id}')">Reassign</button>
-      <button onclick="completeTask('${id}')">Complete</button>
+<button onclick="editTask('${id}')">Edit</button>
+<button onclick="completeTask('${id}')">Complete</button>
       <button onclick="deleteTask('${id}')">Delete</button>
     </div>
   `;
