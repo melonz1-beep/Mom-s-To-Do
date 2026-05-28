@@ -153,7 +153,7 @@ $("taskForm").onsubmit = e => {
     materials:"Custom Material List",
     materialNotes:$("materialNotes").value,
     linkedProject:$("linkedProject").value,
-    cost:$("cost").value || "",
+    cost:"",
     quotes:$("quotes").value,
     photoUrl:$("photoUrl").value,  
     status:"Open",
