@@ -448,24 +448,6 @@ window.deleteShoppingItem = id => {
   }
 };
 
-  document.querySelectorAll(".tabs button").forEach(btn => {
-  btn.onclick = () => {
-    const tabId = btn.dataset.tab;
-    const tab = document.getElementById(tabId);
-
-    if(!tab){
-      alert("Tab not found: " + tabId);
-      return;
-    }
-
-    document.querySelectorAll(".tabs button").forEach(x => x.classList.remove("active"));
-    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
-
-    btn.classList.add("active");
-    tab.classList.add("active");
-  };
-});
-  
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
