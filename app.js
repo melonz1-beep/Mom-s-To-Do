@@ -268,6 +268,10 @@ function card(id,t){
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       <p class="small"><b>Needed by:</b> ${t.neededBy || "Not set"} | <b>Planned:</b> ${t.plannedDate || "Not set"}</p>
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
+      <p class="small">
+  <b>Estimated Project Cost:</b>
+  ${t.cost ? "$" + esc(t.cost) : "Not set"}
+</p>
 
 
 <p class="small">
@@ -292,7 +296,6 @@ function actions(id,t){
 
   return `
     <div class="actions">
-    <button onclick="viewTask('${id}')">View</button>
     <button onclick="viewTask('${id}')">View</button>
       <button onclick="acceptTask('${id}')">Accept</button>
       <button onclick="setStatus('${id}','Started')">Started</button>
@@ -464,6 +467,11 @@ window.editTask = id => {
 
   const materials = prompt("Materials / Shopping List", t.materials || "");
   if(materials === null) return;
+
+  <p class="small">
+  <b>Estimated Project Cost:</b>
+  ${t.cost ? "$" + esc(t.cost) : "Not set"}
+</p>
 
   const notes = prompt("Purchase notes", t.materialNotes || "");
   if(notes === null) return;
