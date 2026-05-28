@@ -221,9 +221,14 @@ function card(id,t){
 <b>Project:</b> ${esc(t.linkedProject || "None")}
 </p>
 
-<p class="small">
-<b>Purchased:</b> ${t.purchased ? "✅ Yes" : "❌ No"}
-</p>
+<label class="checkbox">
+  <input
+    type="checkbox"
+    ${t.purchased ? "checked" : ""}
+    onchange="togglePurchased('${id}', this.checked)"
+  />
+  Materials Purchased
+</label>
 
 <p class="small">
 <b>Notes:</b> ${esc(t.materialNotes || "None")}
