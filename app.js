@@ -266,16 +266,7 @@ function card(id,t){
 
 <p class="small">
 <b>Project:</b> ${esc(t.linkedProject || "None")}
-</p>
-
-<label class="checkbox">
-  <input
-    type="checkbox"
-    ${t.purchased ? "checked" : ""}
-    onchange="togglePurchased('${id}', this.checked)"
-  />
-  Materials Purchased
-</label>
+</
 
 <p class="small">
 <b>Notes:</b> ${esc(t.materialNotes || "None")}
@@ -486,12 +477,6 @@ window.removeMember = id => remove(ref(db,"members/"+id));
 window.removeContact = id => remove(ref(db,"contacts/"+id));
 window.togglePurchased = (id, checked) => {
   update(ref(db,"tasks/"+id),{
-    purchased: checked
-  });
-};
-
-  window.toggleShoppingPurchased = (id, checked) => {
-  update(ref(db,"shoppingItems/"+id),{
     purchased: checked
   });
 };
