@@ -208,6 +208,35 @@
   <button type="submit">Add Shopping Item</button>
     </form>
 
+    <section id="shopping" class="tab">
+  <form id="shoppingForm" class="panel">
+    <h2>Shopping List</h2>
+
+    <label>Item
+      <input id="shopItem" required placeholder="Mulch, screws, paint..." />
+    </label>
+
+    <label>Quantity
+      <input id="shopQty" placeholder="2 bags, 10 boards..." />
+    </label>
+
+    <label>Estimated Cost
+      <input id="shopCost" type="number" min="0" step="0.01" />
+    </label>
+
+    <label>Project
+      <input id="shopProject" placeholder="Fence, porch, mowing..." />
+    </label>
+
+    <label>Notes
+      <textarea id="shopNotes"></textarea>
+    </label>
+
+    <button type="submit">Add Shopping Item</button>
+  </form>
+
+  <div id="shoppingList" class="cards"></div>
+    </section>
     <section id="history" class="tab">
       <h2>Completed Task History</h2>
       <div id="historyList" class="cards"></div>
