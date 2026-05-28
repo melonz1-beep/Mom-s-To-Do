@@ -1,4 +1,4 @@
-8import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, push, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 const firebaseConfig = {
@@ -364,6 +364,14 @@ function renderShopping(){
         <article class="card">
 
           <h3>${esc(s.item || "Shopping Item")}</h3>
+          <p class="small">
+  <b>Quantity:</b> ${esc(s.quantity || "Not set")}
+</p>
+
+<p class="small">
+  <b>Estimated Cost:</b>
+  ${s.cost ? "$" + esc(s.cost) : "Not set"}
+</p>
 
 
           <p class="small">
