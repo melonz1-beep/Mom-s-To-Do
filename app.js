@@ -26,26 +26,7 @@ let shoppingItems = {};
 
 const $ = id => document.getElementById(id);
 const today = () => new Date().toISOString().slice(0,10);
-
-function addMaterialRow(name="", qty="", cost=""){
-  const row = document.createElement("div");
-  row.className = "materialRow";
-
-  row.innerHTML = `
-    <input class="matName" placeholder="Material" value="${name}">
-    <input class="matQty" placeholder="Qty" value="${qty}">
-    <input class="matCost" type="number" step="0.01" placeholder="Cost" value="${cost}">
-    <button type="button" class="removeMat">Remove</button>
-  `;
-
-  row.querySelector(".removeMat").onclick = () => row.remove();
-  $("materialsList").appendChild(row);
-}
-
-if($("addMaterialBtn")){
-  $("addMaterialBtn").onclick = () => addMaterialRow();
-  addMaterialRow();
-}
+  
 function addMaterialRow(name="", qty="", cost=""){
   const row = document.createElement("div");
 
