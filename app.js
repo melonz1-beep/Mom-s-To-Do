@@ -169,11 +169,11 @@ $("taskForm").onsubmit = e => {
 });
 
   e.target.reset();
-  alert("Task added live.");
-};
-
 $("materialsList").innerHTML = "";
 addMaterialRow();
+
+alert("Task added live.");
+};
 
 $("memberForm").onsubmit = e => {
   e.preventDefault();
@@ -480,11 +480,6 @@ window.deleteTask = id => {
 window.removeMember = id => remove(ref(db,"members/"+id));
 window.removeContact = id => remove(ref(db,"contacts/"+id));
 
-window.toggleShoppingPurchased = (id, checked) => {
-  update(ref(db,"shoppingItems/"+id),{
-    purchased: checked
-  });
-};
 window.toggleShoppingPurchased = (id, checked) => {
   update(ref(db,"shoppingItems/"+id),{
     purchased: checked
