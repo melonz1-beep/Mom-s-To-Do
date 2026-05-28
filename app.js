@@ -58,7 +58,7 @@ document.querySelectorAll(".tabs button").forEach(btn => {
     document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
 
     btn.classList.add("active");
-    tab.classList.add("active");
+    
   };
 });
 
