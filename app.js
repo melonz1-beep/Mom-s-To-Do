@@ -473,12 +473,18 @@ window.restoreTask = id => update(ref(db,"tasks/"+id),{
   status:"Open",
   completedAt:""
 });
+
 window.deleteTask = id => {
   if(confirm("Delete this task?")) remove(ref(db,"tasks/"+id));
 };
 window.removeMember = id => remove(ref(db,"members/"+id));
 window.removeContact = id => remove(ref(db,"contacts/"+id));
 
+window.toggleShoppingPurchased = (id, checked) => {
+  update(ref(db,"shoppingItems/"+id),{
+    purchased: checked
+  });
+};
 window.toggleShoppingPurchased = (id, checked) => {
   update(ref(db,"shoppingItems/"+id),{
     purchased: checked
