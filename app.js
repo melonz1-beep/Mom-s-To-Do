@@ -137,7 +137,10 @@ $("taskForm").onsubmit = e => {
   .join(", "),
     materialNotes:$("materialNotes").value,
     linkedProject:$("linkedProject").value,
-    cost:"",
+    cost:Array.from(document.querySelectorAll(".materialRow"))
+  .map(row => Number(row.querySelector(".matCost").value || 0))
+  .reduce((a,b) => a + b, 0)
+  .toFixed(2),
     quotes:$("quotes").value,
     photoUrl:$("photoUrl").value,  
     status:"Open",
