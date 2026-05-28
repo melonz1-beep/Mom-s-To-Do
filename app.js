@@ -300,41 +300,32 @@ window.acceptTask = id => {
 };
 
 window.setStatus = (id,status) => update(ref(db,"tasks/"+id),{status});
-
 window.reschedule = id => {
   const date = prompt("New planned date, YYYY-MM-DD", today());
   if(date) update(ref(db,"tasks/"+id),{plannedDate:date,status:"Accepted"});
 };
-
 window.reassign = id => {
   const name = prompt("Reassign to who?");
   if(name) update(ref(db,"tasks/"+id),{assignedTo:name,status:"Accepted"});
 };
-
 window.completeTask = id => update(ref(db,"tasks/"+id),{
   status:"Completed",
   completedAt:Date.now()
 });
-
 window.restoreTask = id => update(ref(db,"tasks/"+id),{
   status:"Open",
   completedAt:""
 });
-
 window.deleteTask = id => {
   if(confirm("Delete this task?")) remove(ref(db,"tasks/"+id));
 };
-
 window.removeMember = id => remove(ref(db,"members/"+id));
-
 window.removeContact = id => remove(ref(db,"contacts/"+id));
-
 let deferredPrompt;
-
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
   deferredPrompt = e;
-
+  
   if(document.getElementById("installAppBtn")) return;
 
   const installBtn = document.createElement("button");
