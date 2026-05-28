@@ -468,11 +468,6 @@ window.editTask = id => {
   const materials = prompt("Materials / Shopping List", t.materials || "");
   if(materials === null) return;
 
-  <p class="small">
-  <b>Estimated Project Cost:</b>
-  ${t.cost ? "$" + esc(t.cost) : "Not set"}
-</p>
-
   const notes = prompt("Purchase notes", t.materialNotes || "");
   if(notes === null) return;
 
