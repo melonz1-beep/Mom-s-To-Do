@@ -404,6 +404,9 @@ function renderShopping(){
           </label>
 
           <button onclick="deleteShoppingItem('${id}')">
+          <button onclick="editShoppingItem('${id}')">
+  Edit
+</button>
             Remove
           </button>
 
