@@ -365,18 +365,11 @@ function renderShopping(){
 
           <h3>${esc(s.item || "Shopping Item")}</h3>
 
-          <p class="small">
-            <b>Quantity:</b> ${esc(s.quantity || "Not set")}
-          </p>
 
           <p class="small">
             <b>Project:</b> ${esc(s.project || "None")}
           </p>
 
-          <p class="small">
-            <b>Estimated Cost:</b>
-            ${s.cost ? "$" + esc(s.cost) : "Not set"}
-          </p>
 
           <p class="small">
             <b>Notes:</b> ${esc(s.notes || "None")}
@@ -452,8 +445,6 @@ window.editTask = id => {
   update(ref(db,"tasks/"+id),{
     title:title,
     materials:materials,
-    materialQty:qty,
-    cost:cost,
     materialNotes:notes
   });
 };
