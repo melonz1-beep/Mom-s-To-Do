@@ -290,35 +290,30 @@ function renderContacts(){
 
 function renderShopping(){
   const needed = Object.entries(tasks).filter(([id,t]) =>
-  (t.materials || t.materialQty || t.linkedProject || t.materialNotes || t.cost) && !t.purchased
-);
-  
-
-  let total = 0;
+    (t.materials || t.materialQty || t.linkedProject || t.materialNotes || t.cost) && !t.purchased
+  );
 
   $("shoppingList").innerHTML =
     needed.map(([id,t]) => {
-      total += Number(t.cost || 0);
-
       return `
         <article class="card">
-          <h3>${esc(t.materials)}</h3>
+          <h3>${esc(t.materials || t.title || "Shopping Item")}</h3>
 
-          <p class="small"><b>Task:</b> ${esc(t.title)}</p>
+          <p class="small"><b>Task:</b> ${esc(t.title || "Not set")}</p>
           <p class="small"><b>Quantity:</b> ${esc(t.materialQty || "Not set")}</p>
           <p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
           <p class="small"><b>Estimated Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}</p>
           <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
 
           <label class="checkbox">
-  <input 
-    type="checkbox"
-    ${t.purchased ? "checked" : ""}
-    onchange="togglePurchased('${id}', this.checked)"
-  />
-  Purchased
-</label>
-      
+            <input 
+              type="checkbox"
+              onchange="togglePurchased('${id}', this.checked)"
+            />
+            Purchased
+          </label>
+        </article>
+      `;
     }).join("") || "<p>No shopping items needed.</p>";
 }
 function esc(v){
