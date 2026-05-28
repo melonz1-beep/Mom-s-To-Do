@@ -87,9 +87,13 @@ $("taskForm").onsubmit = e => {
     neededBy:$("neededBy").value,
     recurring:$("recurring") ? $("recurring").value : "None",
     materials:$("materials").value,
+    materialQty:$("materialQty").value,
+    materialNotes:$("materialNotes").value,
+    linkedProject:$("linkedProject").value,
+    purchased:$("purchased").checked,
     cost:$("cost").value || "",
     quotes:$("quotes").value,
-    photoUrl:$("photoUrl").value,
+    photoUrl:$("photoUrl").value,  
     status:"Open",
     requestedBy:p.name,
     assignedTo:"",
@@ -169,7 +173,29 @@ function card(id,t){
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       <p class="small"><b>Needed by:</b> ${t.neededBy || "Not set"} | <b>Planned:</b> ${t.plannedDate || "Not set"}</p>
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
-      <p class="small"><b>Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}</p>
+
+<p class="small">
+<b>Quantity:</b> ${esc(t.materialQty || "Not set")}
+</p>
+
+<p class="small">
+<b>Project:</b> ${esc(t.linkedProject || "None")}
+</p>
+
+<p class="small">
+<b>Purchased:</b> ${t.purchased ? "✅ Yes" : "❌ No"}
+</p>
+
+<p class="small">
+<b>Notes:</b> ${esc(t.materialNotes || "None")}
+</p>
+
+<p class="small">
+<b>Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}
+</p>
+   
+    
+    
       <p class="small"><b>Quotes:</b> ${esc(t.quotes || "None")}</p>
       ${actions(id,t)}
     </article>
