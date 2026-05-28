@@ -44,9 +44,19 @@ $("saveProfile").onclick = () => {
 
 document.querySelectorAll(".tabs button").forEach(btn => {
   btn.onclick = () => {
-    document.querySelectorAll(".tabs button,.tab").forEach(x => x.classList.remove("active"));
+    const tabId = btn.dataset.tab;
+    const tab = document.getElementById(tabId);
+
+    if(!tab){
+      alert("Tab not found: " + tabId);
+      return;
+    }
+
+    document.querySelectorAll(".tabs button").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+
     btn.classList.add("active");
-    $(btn.dataset.tab).classList.add("active");
+    tab.classList.add("active");
   };
 });
 
