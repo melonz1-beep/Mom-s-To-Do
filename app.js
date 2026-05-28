@@ -300,11 +300,15 @@ function renderShopping(){
           <p class="small"><b>Estimated Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}</p>
           <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
 
-          <button onclick="markPurchased('${id}')">
-            Mark Purchased
-          </button>
-        </article>
-      `;
+          <label class="checkbox">
+  <input 
+    type="checkbox"
+    ${t.purchased ? "checked" : ""}
+    onchange="togglePurchased('${id}', this.checked)"
+  />
+  Purchased
+</label>
+      
     }).join("") || "<p>No shopping items needed.</p>";
 }
 function esc(v){
@@ -351,6 +355,12 @@ window.deleteTask = id => {
 };
 window.removeMember = id => remove(ref(db,"members/"+id));
 window.removeContact = id => remove(ref(db,"contacts/"+id));
+window.togglePurchased = (id, checked) => {
+  update(ref(db,"tasks/"+id),{
+    purchased: checked
+  });
+};
+
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
