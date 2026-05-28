@@ -278,6 +278,34 @@ function renderContacts(){
     `).join("") || "<p>No emergency contacts yet.</p>";
 }
 
+function renderShopping(){
+  const needed = Object.entries(tasks).filter(([id,t]) =>
+    t.materials && !t.purchased
+  );
+
+  let total = 0;
+
+  $("shoppingList").innerHTML =
+    needed.map(([id,t]) => {
+      total += Number(t.cost || 0);
+
+      return `
+        <article class="card">
+          <h3>${esc(t.materials)}</h3>
+
+          <p class="small"><b>Task:</b> ${esc(t.title)}</p>
+          <p class="small"><b>Quantity:</b> ${esc(t.materialQty || "Not set")}</p>
+          <p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
+          <p class="small"><b>Estimated Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}</p>
+          <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
+
+          <button onclick="markPurchased('${id}')">
+            Mark Purchased
+          </button>
+        </article>
+      `;
+    }).join("") || "<p>No shopping items needed.</p>";
+}
 function esc(v){
   return String(v || "").replace(/[&<>'"]/g, c => ({
     "&":"&amp;",
