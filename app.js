@@ -347,6 +347,33 @@ window.reassign = id => {
   const name = prompt("Reassign to who?");
   if(name) update(ref(db,"tasks/"+id),{assignedTo:name,status:"Accepted"});
 };
+window.editTask = id => {
+  const t = tasks[id];
+
+  const title = prompt("Task title", t.title || "");
+  if(title === null) return;
+
+  const materials = prompt("Materials / Shopping List", t.materials || "");
+  if(materials === null) return;
+
+  const qty = prompt("Quantity needed", t.materialQty || "");
+  if(qty === null) return;
+
+  const cost = prompt("Estimated cost", t.cost || "");
+  if(cost === null) return;
+
+  const notes = prompt("Purchase notes", t.materialNotes || "");
+  if(notes === null) return;
+
+  update(ref(db,"tasks/"+id),{
+    title:title,
+    materials:materials,
+    materialQty:qty,
+    cost:cost,
+    materialNotes:notes
+  });
+};
+window.completeTask = id => update(ref(db,"tasks/"+id),{
 window.completeTask = id => update(ref(db,"tasks/"+id),{
   status:"Completed",
   completedAt:Date.now()
