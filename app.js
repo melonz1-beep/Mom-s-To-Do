@@ -44,17 +44,6 @@ $("saveProfile").onclick = () => {
   render();
 };
 
-document.querySelectorAll(".tabs button").forEach(btn => {
-  btn.onclick = () => {
-    const tabId = btn.dataset.tab;
-    const tab = document.getElementById(tabId);
-
-    if(!tab){
-      alert("Tab not found: " + tabId);
-      return;
-    
-  };
-})
 
 onValue(membersRef, snap => {
   members = snap.val() || {};
