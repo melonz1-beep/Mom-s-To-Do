@@ -373,7 +373,7 @@ window.editTask = id => {
     materialNotes:notes
   });
 };
-window.completeTask = id => update(ref(db,"tasks/"+id),{
+
 window.completeTask = id => update(ref(db,"tasks/"+id),{
   status:"Completed",
   completedAt:Date.now()
