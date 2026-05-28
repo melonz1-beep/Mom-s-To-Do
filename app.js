@@ -17,10 +17,12 @@ const db = getDatabase(app);
 const tasksRef = ref(db, "tasks");
 const membersRef = ref(db, "members");
 const contactsRef = ref(db, "contacts");
+const shoppingRef = ref(db, "shoppingItems");
 
 let tasks = {};
 let members = {};
 let contacts = {};
+let shoppingItems = {};
 
 const $ = id => document.getElementById(id);
 const today = () => new Date().toISOString().slice(0,10);
@@ -75,6 +77,11 @@ onValue(membersRef, snap => {
 onValue(contactsRef, snap => {
   contacts = snap.val() || {};
   renderContacts();
+});
+
+onValue(shoppingRef, snap => {
+  shoppingItems = snap.val() || {};
+  renderShopping();
 });
 
 function markPastDue(){
@@ -143,6 +150,24 @@ $("contactForm").onsubmit = e => {
     relation:$("contactRelation").value,
     phone:$("contactPhone").value,
     email:$("contactEmail").value
+  });
+
+  e.target.reset();
+};
+
+$("shoppingForm").onsubmit = e => {
+  e.preventDefault();
+
+  const s = push(shoppingRef);
+
+  set(s,{
+    item:$("shopItem").value,
+    quantity:$("shopQty").value,
+    cost:$("shopCost").value || "",
+    project:$("shopProject").value,
+    notes:$("shopNotes").value,
+    purchased:false,
+    createdAt:Date.now()
   });
 
   e.target.reset();
@@ -294,29 +319,51 @@ function renderShopping(){
     (t.materials || t.materialQty || t.linkedProject || t.materialNotes || t.cost) && !t.purchased
   );
 
+function renderShopping(){
+
   $("shoppingList").innerHTML =
-    needed.map(([id,t]) => {
+    Object.entries(shoppingItems).map(([id,s]) => {
+
       return `
         <article class="card">
-          <h3>${esc(t.materials || t.title || "Shopping Item")}</h3>
 
-          <p class="small"><b>Task:</b> ${esc(t.title || "Not set")}</p>
-          <p class="small"><b>Quantity:</b> ${esc(t.materialQty || "Not set")}</p>
-          <p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
-          <p class="small"><b>Estimated Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}</p>
-          <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
+          <h3>${esc(s.item || "Shopping Item")}</h3>
+
+          <p class="small">
+            <b>Quantity:</b> ${esc(s.quantity || "Not set")}
+          </p>
+
+          <p class="small">
+            <b>Project:</b> ${esc(s.project || "None")}
+          </p>
+
+          <p class="small">
+            <b>Estimated Cost:</b>
+            ${s.cost ? "$" + esc(s.cost) : "Not set"}
+          </p>
+
+          <p class="small">
+            <b>Notes:</b> ${esc(s.notes || "None")}
+          </p>
 
           <label class="checkbox">
-            <input 
+            <input
               type="checkbox"
-              onchange="togglePurchased('${id}', this.checked)"
+              ${s.purchased ? "checked" : ""}
+              onchange="toggleShoppingPurchased('${id}', this.checked)"
             />
             Purchased
           </label>
+
+          <button onclick="deleteShoppingItem('${id}')">
+            Remove
+          </button>
+
         </article>
       `;
     }).join("") || "<p>No shopping items needed.</p>";
 }
+  
 function esc(v){
   return String(v || "").replace(/[&<>'"]/g, c => ({
     "&":"&amp;",
@@ -392,6 +439,18 @@ window.togglePurchased = (id, checked) => {
   update(ref(db,"tasks/"+id),{
     purchased: checked
   });
+};
+
+  window.toggleShoppingPurchased = (id, checked) => {
+  update(ref(db,"shoppingItems/"+id),{
+    purchased: checked
+  });
+};
+
+window.deleteShoppingItem = id => {
+  if(confirm("Remove this shopping item?")){
+    remove(ref(db,"shoppingItems/"+id));
+  }
 };
 
 let deferredPrompt;
