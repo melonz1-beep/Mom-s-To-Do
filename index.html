@@ -104,18 +104,14 @@
       </label>
     </div>
 
-    <label>Materials / Shopping List
-      <textarea id="materials" placeholder="2 bags mulch, screws, paint, lumber..."></textarea>
-    </label>
+    <div class="panel">
+  <h3>Materials Needed</h3>
 
-    <div class="grid two">
-      <label>Quantity Needed
-        <input id="materialQty" placeholder="2 bags, 10 boards, etc." />
-      </label>
+  <div id="materialsList"></div>
 
-      <label>Estimated Cost
-        <input id="cost" type="number" min="0" step="0.01" placeholder="0.00" />
-      </label>
+  <button type="button" id="addMaterialBtn">
+    + Add Material
+  </button>
     </div>
 
     <label>Linked Project / Task
