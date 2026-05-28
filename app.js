@@ -172,6 +172,9 @@ $("taskForm").onsubmit = e => {
   alert("Task added live.");
 };
 
+$("materialsList").innerHTML = "";
+addMaterialRow();
+
 $("memberForm").onsubmit = e => {
   e.preventDefault();
 
