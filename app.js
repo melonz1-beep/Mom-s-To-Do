@@ -168,7 +168,7 @@ if ($("taskForm")) {
       status: "Open",
       requestedBy: p.name,
       assignedTo: "",
-      plannedDate: "",
+      plannedDate: $("plannedDate") ? $("plannedDate").value : "",
       createdAt: Date.now(),
       completedAt: ""
     });
