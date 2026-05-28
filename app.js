@@ -120,6 +120,25 @@ $("taskForm").onsubmit = e => {
     createdAt:Date.now(),
     completedAt:""
   });
+  const materialItems = $("materials").value
+    .split(/\n|,/)
+    .map(x => x.trim())
+    .filter(x => x);
+
+  materialItems.forEach(item => {
+    const s = push(shoppingRef);
+
+    set(s,{
+      item:item,
+      quantity:$("materialQty").value || "",
+      cost:$("cost").value || "",
+      project:$("linkedProject").value || $("title").value,
+      notes:$("materialNotes").value || "",
+      purchased:false,
+      taskId:newRef.key,
+      createdAt:Date.now()
+    });
+  });
 
   e.target.reset();
   alert("Task added live.");
