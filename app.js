@@ -131,7 +131,10 @@ $("taskForm").onsubmit = e => {
     priority:$("priority").value,
     neededBy:$("neededBy").value,
     recurring:$("recurring") ? $("recurring").value : "None",
-    materials:"Custom Material List",
+    materials:Array.from(document.querySelectorAll(".materialRow"))
+  .map(row => row.querySelector(".matName").value.trim())
+  .filter(Boolean)
+  .join(", "),
     materialNotes:$("materialNotes").value,
     linkedProject:$("linkedProject").value,
     cost:"",
