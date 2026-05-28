@@ -54,6 +54,7 @@ onValue(tasksRef, snap => {
   tasks = snap.val() || {};
   markPastDue();
   render();
+  renderShopping();
 });
 
 onValue(membersRef, snap => {
