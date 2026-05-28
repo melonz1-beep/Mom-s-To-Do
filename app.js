@@ -494,7 +494,6 @@ window.editShoppingItem = id => {
 };
 
 window.acceptTask = id => {
-window.acceptTask = id => {
   const p = profile();
   const date = prompt("Planned completion date, YYYY-MM-DD", today());
 
