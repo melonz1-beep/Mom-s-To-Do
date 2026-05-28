@@ -43,9 +43,9 @@ $("saveProfile").onclick = () => {
   alert("Profile saved");
   render();
 };
-
 document.querySelectorAll(".tabs button").forEach(btn => {
   btn.onclick = () => {
+
     const tabId = btn.dataset.tab;
     const tab = document.getElementById(tabId);
 
@@ -59,9 +59,10 @@ document.querySelectorAll(".tabs button").forEach(btn => {
 
     btn.classList.add("active");
     tab.classList.add("active");
-    
+
   };
 });
+
 
 onValue(membersRef, snap => {
   members = snap.val() || {};
