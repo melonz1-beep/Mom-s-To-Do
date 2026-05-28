@@ -476,6 +476,12 @@ window.deleteTask = id => {
 window.removeMember = id => remove(ref(db,"members/"+id));
 window.removeContact = id => remove(ref(db,"contacts/"+id));
 
+window.toggleShoppingPurchased = (id, checked) => {
+  update(ref(db,"shoppingItems/"+id),{
+    purchased: checked
+  });
+};
+
 window.deleteShoppingItem = id => {
   if(confirm("Remove this shopping item?")){
     remove(ref(db,"shoppingItems/"+id));
