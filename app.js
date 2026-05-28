@@ -315,11 +315,6 @@ function renderContacts(){
 }
 
 function renderShopping(){
-  const needed = Object.entries(tasks).filter(([id,t]) =>
-    (t.materials || t.materialQty || t.linkedProject || t.materialNotes || t.cost) && !t.purchased
-  );
-
-function renderShopping(){
 
   $("shoppingList").innerHTML =
     Object.entries(shoppingItems).map(([id,s]) => {
