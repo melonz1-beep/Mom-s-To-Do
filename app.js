@@ -52,22 +52,9 @@ document.querySelectorAll(".tabs button").forEach(btn => {
     if(!tab){
       alert("Tab not found: " + tabId);
       return;
-    }
-
-    document.querySelectorAll(".tabs button").forEach(x => x.classList.remove("active"));
-    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
-
-    btn.classList.add("active");
-    tab.classList.add("active");
+    
   };
-});
-
-onValue(tasksRef, snap => {
-  tasks = snap.val() || {};
-  markPastDue();
-  render();
-  renderShopping();
-});
+})
 
 onValue(membersRef, snap => {
   members = snap.val() || {};
@@ -82,6 +69,12 @@ onValue(contactsRef, snap => {
 onValue(shoppingRef, snap => {
   shoppingItems = snap.val() || {};
   renderShopping();
+});
+
+onValue(tasksRef, snap => {
+  tasks = snap.val() || {};
+  markPastDue();
+  render();
 });
 
 function markPastDue(){
@@ -155,23 +148,25 @@ $("contactForm").onsubmit = e => {
   e.target.reset();
 };
 
-$("shoppingForm").onsubmit = e => {
-  e.preventDefault();
+if($("shoppingForm")){
+  $("shoppingForm").onsubmit = e => {
+    e.preventDefault();
 
-  const s = push(shoppingRef);
+    const s = push(shoppingRef);
 
-  set(s,{
-    item:$("shopItem").value,
-    quantity:$("shopQty").value,
-    cost:$("shopCost").value || "",
-    project:$("shopProject").value,
-    notes:$("shopNotes").value,
-    purchased:false,
-    createdAt:Date.now()
-  });
+    set(s,{
+      item:$("shopItem").value,
+      quantity:$("shopQty").value,
+      cost:$("shopCost").value || "",
+      project:$("shopProject").value,
+      notes:$("shopNotes").value,
+      purchased:false,
+      createdAt:Date.now()
+    });
 
-  e.target.reset();
-};
+    e.target.reset();
+  };
+}
 
 $("filterStatus").onchange = render;
 $("filterPriority").onchange = render;
@@ -230,7 +225,6 @@ function card(id,t){
 <b>Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}
 </p>
    
-    
     
       <p class="small"><b>Quotes:</b> ${esc(t.quotes || "None")}</p>
       ${actions(id,t)}
@@ -448,6 +442,24 @@ window.deleteShoppingItem = id => {
   }
 };
 
+  document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.onclick = () => {
+    const tabId = btn.dataset.tab;
+    const tab = document.getElementById(tabId);
+
+    if(!tab){
+      alert("Tab not found: " + tabId);
+      return;
+    }
+
+    document.querySelectorAll(".tabs button").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+
+    btn.classList.add("active");
+    tab.classList.add("active");
+  };
+});
+  
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
