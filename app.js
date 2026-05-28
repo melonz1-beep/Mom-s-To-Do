@@ -1,4 +1,5 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+<button onclick="editShoppingItem('${id}')">Edit</button>
+<button onclick="deleteShoppingItem('${id}')">Remove</button>import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, push, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 const firebaseConfig = {
@@ -407,12 +408,8 @@ function renderShopping(){
             Purchased
           </label>
 
-          <button onclick="deleteShoppingItem('${id}')">
-          <button onclick="editShoppingItem('${id}')">
-  Edit
-</button>
-            Remove
-          </button>
+          <button onclick="editShoppingItem('${id}')">Edit</button>
+<button onclick="deleteShoppingItem('${id}')">Remove</button>
 
         </article>
       `;
