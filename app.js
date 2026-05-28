@@ -414,7 +414,20 @@ function esc(v){
     '"':"&quot;"
   }[c]));
 }
+window.viewTask = id => {
+  const t = tasks[id];
 
+  alert(
+    "Task: " + (t.title || "") +
+    "\n\nDescription: " + (t.description || "None") +
+    "\n\nNeeded by: " + (t.neededBy || "Not set") +
+    "\nPlanned: " + (t.plannedDate || "Not set") +
+    "\n\nMaterials: " + (t.materials || "None") +
+    "\nNotes: " + (t.materialNotes || "None") +
+    "\nQuotes: " + (t.quotes || "None") +
+    "\n\nEstimated Project Cost: $" + (t.cost || "0")
+  );
+};
 window.acceptTask = id => {
   const p = profile();
   const date = prompt("Planned completion date, YYYY-MM-DD", today());
