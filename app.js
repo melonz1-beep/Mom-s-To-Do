@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+8import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getDatabase, ref, push, set, update, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
 const firebaseConfig = {
@@ -263,9 +263,6 @@ function card(id,t){
       <p class="small"><b>Needed by:</b> ${t.neededBy || "Not set"} | <b>Planned:</b> ${t.plannedDate || "Not set"}</p>
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
 
-<p class="small">
-<b>Quantity:</b> ${esc(t.materialQty || "Not set")}
-</p>
 
 <p class="small">
 <b>Project:</b> ${esc(t.linkedProject || "None")}
@@ -273,10 +270,6 @@ function card(id,t){
 
 <p class="small">
 <b>Notes:</b> ${esc(t.materialNotes || "None")}
-</p>
-
-<p class="small">
-<b>Cost:</b> ${t.cost ? "$" + esc(t.cost) : "Not set"}
 </p>
    
     
