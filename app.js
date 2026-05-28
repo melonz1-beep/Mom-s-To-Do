@@ -441,16 +441,24 @@ window.editTask = id => {
   const title = prompt("Task title", t.title || "");
   if(title === null) return;
 
+  const description = prompt("Task description", t.description || "");
+  if(description === null) return;
+
   const materials = prompt("Materials / Shopping List", t.materials || "");
   if(materials === null) return;
 
   const notes = prompt("Purchase notes", t.materialNotes || "");
   if(notes === null) return;
 
+  const quotes = prompt("Contractor quotes", t.quotes || "");
+  if(quotes === null) return;
+
   update(ref(db,"tasks/"+id),{
     title:title,
+    description:description,
     materials:materials,
-    materialNotes:notes
+    materialNotes:notes,
+    quotes:quotes
   });
 };
 
