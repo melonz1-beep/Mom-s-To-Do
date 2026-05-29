@@ -291,7 +291,7 @@ function card(id, t) {
       ${t.recurring && t.recurring !== "None" ? `<span class="badge">Repeats: ${esc(t.recurring)}</span>` : ""}
       <p>${esc(t.description || "")}</p>
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
-      if ($("taskList")) $("taskList").innerHTML = filtered.map(([id, t]) => card(id, t)).join("") || "<p>No active tasks yet.</p>";
+      ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
       <p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
