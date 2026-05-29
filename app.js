@@ -173,6 +173,7 @@ try {
       title: $("title").value,
       description: $("description").value,
       priority: $("priority").value,
+      category: $("category")?.value || "Other",
       neededBy: $("neededBy").value,
       recurring: $("recurring") ? $("recurring").value : "None",
       materials: materialNames || "None listed",
@@ -302,6 +303,7 @@ function card(id, t) {
     <article class="card ${isPast ? "pastdue" : ""} ${isDone ? "completed" : ""}">
       <h3>${esc(t.title)}</h3>
       <span class="badge ${priorityClass(t.priority)}">${esc(t.priority)}</span>
+      <span class="badge">${esc(t.category || "Other")}</span>
       <span class="badge">${esc(t.status)}</span>
       ${t.assignedTo ? `<span class="badge assigned">Accepted By: ${esc(t.assignedTo)}</span>` : ""}
       ${t.recurring && t.recurring !== "None" ? `<span class="badge">Repeats: ${esc(t.recurring)}</span>` : ""}
