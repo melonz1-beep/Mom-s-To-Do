@@ -235,6 +235,52 @@
     </section>
   </main>
 
+
+  <div id="editModal" class="modal hidden">
+  <div class="modalBox">
+    <h2>Edit Task</h2>
+
+    <input type="hidden" id="editTaskId" />
+
+    <label>Title
+      <input id="editTitle" />
+    </label>
+
+    <label>Description
+      <textarea id="editDescription"></textarea>
+    </label>
+
+    <label>Needed By
+      <input id="editNeededBy" type="date" />
+    </label>
+
+    <label>Planned Date
+      <input id="editPlannedDate" type="date" />
+    </label>
+
+    <label>Materials
+      <textarea id="editMaterials"></textarea>
+    </label>
+
+    <label>Estimated Project Cost
+      <input id="editCost" type="number" step="0.01" />
+    </label>
+
+    <label>Notes
+      <textarea id="editNotes"></textarea>
+    </label>
+
+    <label>Quotes
+      <textarea id="editQuotes"></textarea>
+    </label>
+
+    <div class="actions">
+      <button type="button" id="saveEditTask">Save Changes</button>
+      <button type="button" id="closeEditModal">Cancel</button>
+    </div>
+  </div>
+  </div>
+
 <input id="hiddenDatePicker" type="date" style="display:none;" />
 
 <script type="module" src="app.js"></script>
