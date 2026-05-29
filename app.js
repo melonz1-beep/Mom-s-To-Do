@@ -457,16 +457,24 @@ function renderShopping() {
 window.viewTask = id => {
   const t = tasks[id];
 
-  alert(
-    "Task: " + (t.title || "") +
-    "\n\nDescription: " + (t.description || "None") +
-    "\n\nNeeded by: " + (t.neededBy || "Not set") +
-    "\nPlanned: " + (t.plannedDate || "Not set") +
-    "\n\nMaterials: " + (t.materials || "None") +
-    "\nNotes: " + (t.materialNotes || "None") +
-    "\nQuotes: " + (t.quotes || "None") +
-    "\n\nEstimated Project Cost: " + money(t.cost)
-  );
+  $("viewTitle").textContent = t.title || "Task Details";
+
+  $("viewTaskDetails").innerHTML = `
+    ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
+    <p><b>Status:</b> ${esc(t.status || "Open")}</p>
+    <p><b>Priority:</b> ${esc(t.priority || "Medium Priority")}</p>
+    <p><b>Description:</b> ${esc(t.description || "None")}</p>
+    <p><b>Needed by:</b> ${esc(t.neededBy || "Not set")}</p>
+    <p><b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
+    <p><b>Assigned to:</b> ${esc(t.assignedTo || "Unassigned")}</p>
+    <p><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
+    <p><b>Estimated Cost:</b> ${money(t.cost)}</p>
+    <p><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
+    <p><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
+    <p><b>Quotes:</b> ${esc(t.quotes || "None")}</p>
+  `;
+
+  $("viewModal").classList.remove("hidden");
 };
 
 window.editTask = id => {
@@ -484,6 +492,12 @@ window.editTask = id => {
 
   $("editModal").classList.remove("hidden");
 };
+
+if ($("closeViewModal")) {
+  $("closeViewModal").onclick = () => {
+    $("viewModal").classList.add("hidden");
+  };
+}
 
 if ($("saveEditTask")) {
   $("saveEditTask").onclick = () => {
