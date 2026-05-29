@@ -418,6 +418,7 @@ window.viewTask = id => {
 
 window.editTask = id => {
   const t = tasks[id];
+  if (!t) return alert("Task not found");
 
   $("editTaskId").value = id;
   $("editTitle").value = t.title || "";
@@ -430,27 +431,6 @@ window.editTask = id => {
   $("editQuotes").value = t.quotes || "";
 
   $("editModal").classList.remove("hidden");
-};
-
-$("closeEditModal").onclick = () => {
-  $("editModal").classList.add("hidden");
-};
-
-$("saveEditTask").onclick = () => {
-  const id = $("editTaskId").value;
-
-  update(ref(db, "tasks/" + id), {
-    title: $("editTitle").value,
-    description: $("editDescription").value,
-    neededBy: $("editNeededBy").value,
-    plannedDate: $("editPlannedDate").value,
-    materials: $("editMaterials").value,
-    cost: $("editCost").value,
-    materialNotes: $("editNotes").value,
-    quotes: $("editQuotes").value
-  });
-
-  $("editModal").classList.add("hidden");
 };
 
 window.editShoppingItem = id => {
