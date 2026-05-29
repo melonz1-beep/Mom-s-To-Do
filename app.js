@@ -378,15 +378,13 @@ function renderCalendar() {
   if (!$("calendarList")) return;
 
   const items = Object.entries(tasks)
-  .filter(([id, t]) =>
-    (t.neededBy || t.plannedDate) &&
-    t.status !== "Completed"
-  )
-  .sort((a, b) =>
-    (a[1].neededBy || a[1].plannedDate || "9999")
-      .localeCompare(b[1].neededBy || b[1].plannedDate || "9999")
-  );
-        
+    .filter(([id, t]) =>
+      (t.neededBy || t.plannedDate) &&
+      t.status !== "Completed"
+    )
+    .sort((a, b) =>
+      (a[1].neededBy || a[1].plannedDate || "9999")
+        .localeCompare(b[1].neededBy || b[1].plannedDate || "9999")
     );
 
   $("calendarList").innerHTML = items.map(([id, t]) => `
