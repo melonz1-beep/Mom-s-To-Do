@@ -564,3 +564,10 @@ window.addEventListener("beforeinstallprompt", e => {
     deferredPrompt = null;
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+
+  $("dashboard")?.classList.add("active");
+  document.querySelector('[data-tab="dashboard"]')?.classList.add("active");
+});
