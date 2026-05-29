@@ -491,8 +491,21 @@ window.acceptTask = id => {
 window.setStatus = (id, status) => update(ref(db, "tasks/" + id), { status });
 
 window.reschedule = id => {
-  const date = prompt("New planned date, YYYY-MM-DD", today());
-  if (date) update(ref(db, "tasks/" + id), { plannedDate: date, status: "Accepted" });
+  const picker = $("hiddenDatePicker");
+  if (!picker) return alert("Date picker not found in index.html");
+
+  picker.value = today();
+
+  picker.onchange = () => {
+    if (picker.value) {
+      update(ref(db, "tasks/" + id), {
+        plannedDate: picker.value,
+        status: "Accepted"
+      });
+    }
+  };
+
+  picker.showPicker ? picker.showPicker() : picker.click();
 };
 
 window.reassign = id => {
