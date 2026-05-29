@@ -515,7 +515,8 @@ window.reassign = id => {
 
 window.completeTask = id => update(ref(db, "tasks/" + id), {
   status: "Completed",
-  completedAt: Date.now()
+  completedAt: Date.now(),
+  completedDate: new Date().toISOString().split("T")[0]
 });
 
 window.restoreTask = id => update(ref(db, "tasks/" + id), {
