@@ -418,7 +418,6 @@ window.viewTask = id => {
 
 window.editTask = id => {
   const t = tasks[id];
-  if (!t) return alert("Task not found");
 
   $("editTaskId").value = id;
   $("editTitle").value = t.title || "";
@@ -432,12 +431,6 @@ window.editTask = id => {
 
   $("editModal").classList.remove("hidden");
 };
-
-if ($("closeEditModal")) {
-  $("closeEditModal").onclick = () => {
-    $("editModal").classList.add("hidden");
-  };
-}
 
 if ($("saveEditTask")) {
   $("saveEditTask").onclick = () => {
