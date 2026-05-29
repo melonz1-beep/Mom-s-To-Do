@@ -498,38 +498,13 @@ if ($("saveEditTask")) {
     });
 
     $("editModal").classList.add("hidden");
-  };
+  });
+  
 }
 if ($("closeEditModal")) {
   $("closeEditModal").onclick = () => {
     $("editModal").classList.add("hidden");
-  };
-}
-
-if ($("saveEditTask")) {
-  $("saveEditTask").onclick = () => {
-    const id = $("editTaskId").value;
-
-    update(ref(db, "tasks/" + id), {
-      title: $("editTitle").value,
-      description: $("editDescription").value,
-      neededBy: $("editNeededBy").value,
-      plannedDate: $("editPlannedDate").value,
-      materials: $("editMaterials").value,
-      cost: $("editCost").value,
-      materialNotes: $("editNotes").value,
-      quotes: $("editQuotes").value
-    });
-
-    $("editModal").classList.add("hidden");
-  };
-}
-
-if ($("closeEditModal")) {
-  $("closeEditModal").onclick = () => {
-    $("editModal").classList.add("hidden");
-  };
-}
+  
 
 window.editShoppingItem = id => {
   const s = shoppingItems[id];
