@@ -335,7 +335,6 @@ function render() {
   );
 
   if ($("taskList")) $("taskList").innerHTML = filtered.map(([id, t]) => card(id, t)).join("") || "<p>No active tasks yet.</p>";
-  <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Pla
   if ($("historyList")) $("historyList").innerHTML = arr.filter(([id, t]) => t.status === "Completed").map(([id, t]) => card(id, t)).join("") || "<p>No completed tasks yet.</p>";
   if ($("urgentList")) $("urgentList").innerHTML = active.filter(([id, t]) => t.priority === "Urgent" || t.status === "Past Due").map(([id, t]) => card(id, t)).join("") || "<p>No urgent or past-due items.</p>";
 
