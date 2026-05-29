@@ -498,15 +498,13 @@ if ($("saveEditTask")) {
     });
 
     $("editModal").classList.add("hidden");
-  };
-}
+ };
 
-if ($("closeEditModal")) {
+  if ($("closeEditModal")) {
   $("closeEditModal").onclick = () => {
     $("editModal").classList.add("hidden");
   };
-}
-  
+  }
 
 window.editShoppingItem = id => {
   const s = shoppingItems[id];
