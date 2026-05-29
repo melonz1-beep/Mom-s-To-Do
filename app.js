@@ -147,13 +147,22 @@ function markPastDue() {
 }
 
 if ($("taskForm")) {
-  $("taskForm").onsubmit = e => {
+  $("taskForm").onsubmit = async e => {
     e.preventDefault();
 
     const p = profile();
     const newRef = push(tasksRef);
     const materialNames = getMaterialNames();
     const totalCost = calculateMaterialTotal();
+    let photoUrl = "";
+
+const file = $("photoFile")?.files?.[0];
+
+if (file) {
+  const fileRef = storageRef(storage, "taskPhotos/" + Date.now() + "-" + file.name);
+  await uploadBytes(fileRef, file);
+  photoUrl = await getDownloadURL(fileRef);
+}
 
     set(newRef, {
       title: $("title").value,
