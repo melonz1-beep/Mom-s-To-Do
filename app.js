@@ -498,7 +498,14 @@ if ($("saveEditTask")) {
     });
 
     $("editModal").classList.add("hidden");
-  });
+  };
+}
+
+if ($("closeEditModal")) {
+  $("closeEditModal").onclick = () => {
+    $("editModal").classList.add("hidden");
+  };
+}
   
 }
 if ($("closeEditModal")) {
