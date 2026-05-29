@@ -156,12 +156,17 @@ if ($("taskForm")) {
     const totalCost = calculateMaterialTotal();
     let photoUrl = "";
 
-const file = $("photoFile")?.files?.[0];
+try {
+  const file = $("photoFile")?.files?.[0];
 
-if (file) {
-  const fileRef = storageRef(storage, "taskPhotos/" + Date.now() + "-" + file.name);
-  await uploadBytes(fileRef, file);
-  photoUrl = await getDownloadURL(fileRef);
+  if (file) {
+    const fileRef = storageRef(storage, "taskPhotos/" + Date.now() + "-" + file.name);
+    await uploadBytes(fileRef, file);
+    photoUrl = await getDownloadURL(fileRef);
+  }
+} catch (err) {
+  alert("Photo upload failed, but task will still be saved.");
+  console.error(err);
 }
 
     set(newRef, {
@@ -458,6 +463,12 @@ if ($("saveEditTask")) {
       quotes: $("editQuotes").value
     });
 
+    $("editModal").classList.add("hidden");
+  };
+}
+
+if ($("closeEditModal")) {
+  $("closeEditModal").onclick = () => {
     $("editModal").classList.add("hidden");
   };
 }
