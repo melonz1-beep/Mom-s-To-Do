@@ -358,9 +358,30 @@ function render() {
   if ($("progressCount")) $("progressCount").textContent = active.filter(([i, t]) => ["Accepted", "Started", "In Progress"].includes(t.status)).length;
   if ($("pastDueCount")) $("pastDueCount").textContent = active.filter(([i, t]) => t.status === "Past Due").length;
   if ($("doneCount")) $("doneCount").textContent = arr.filter(([i, t]) => t.status === "Completed").length;
-  
-  renderCalendar();
-}
+
+function renderCalendar() {
+  if (!$("calendarList")) return;
+
+  const items = Object.entries(tasks)
+    .filter(([id, t]) => t.neededBy || t.plannedDate)
+    .sort((a, b) =>
+      (a[1].neededBy || a[1].plannedDate || "9999")
+        .localeCompare(b[1].neededBy || b[1].plannedDate || "9999")
+    );
+
+  $("calendarList").innerHTML = items.map(([id, t]) => `
+    <article class="card ${t.status === "Past Due" ? "pastdue" : ""}">
+      <h3>${esc(t.title)}</h3>
+      <p class="small"><b>Status:</b> ${esc(t.status || "Open")}</p>
+      <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")}</p>
+      <p class="small"><b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
+      <p class="small"><b>Assigned to:</b> ${esc(t.assignedTo || "Unassigned")}</p>
+      <button onclick="viewTask('${id}')">View</button>
+    </article>
+  `).join("") || "<p>No dated tasks yet.</p>";
+}  
+   
+renderCalendar();
 
 function renderMembers() {
   if (!$("memberList")) return;
