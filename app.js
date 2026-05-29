@@ -308,7 +308,6 @@ function card(id, t) {
       <p>${esc(t.description || "")}</p>
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
-      ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
       <p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
       <p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
@@ -340,6 +339,24 @@ function actions(id, t) {
 }
 
 function render() {
+  const arr = sortTasks(Object.entries(tasks));
+  const fs = $("filterStatus")?.value || "all";
+  const fp = $("filterPriority")?.value || "all";
+  const active = arr.filter(([id, t]) => t.status !== "Completed");
+
+  const filtered = active.filter(([id, t]) =>
+    (fs === "all" || t.status === fs) &&
+    (fp === "all" || t.priority === fp)
+  );
+
+  if ($("taskList")) $("taskList").innerHTML = filtered.map(([id, t]) => card(id, t)).join("") || "<p>No active tasks yet.</p>";
+  if ($("historyList")) $("historyList").innerHTML = arr.filter(([id, t]) => t.status === "Completed").map(([id, t]) => card(id, t)).join("") || "<p>No completed tasks yet.</p>";
+  if ($("urgentList")) $("urgentList").innerHTML = active.filter(([id, t]) => t.priority === "Urgent" || t.status === "Past Due").map(([id, t]) => card(id, t)).join("") || "<p>No urgent or past-due items.</p>";
+
+  if ($("openCount")) $("openCount").textContent = active.filter(([i, t]) => t.status === "Open").length;
+  if ($("progressCount")) $("progressCount").textContent = active.filter(([i, t]) => ["Accepted", "Started", "In Progress"].includes(t.status)).length;
+  if ($("pastDueCount")) $("pastDueCount").textContent = active.filter(([i, t]) => t.status === "Past Due").length;
+  function render() {
   const arr = sortTasks(Object.entries(tasks));
   const fs = $("filterStatus")?.value || "all";
   const fp = $("filterPriority")?.value || "all";
