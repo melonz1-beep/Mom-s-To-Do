@@ -165,3 +165,6 @@ display:block;
 .modalBox textarea {
   width: 100%;
 }
+.hidden {
+  display: none !important;
+}
