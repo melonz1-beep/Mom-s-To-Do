@@ -175,7 +175,7 @@ if (file) {
       linkedProject: $("linkedProject").value,
       cost: totalCost,
       quotes: $("quotes").value,
-      photoUrl: $("photoUrl").value,
+      photoUrl: photoUrl,
       status: "Open",
       requestedBy: p.name,
       assignedTo: "",
