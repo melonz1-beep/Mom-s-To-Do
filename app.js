@@ -419,32 +419,38 @@ window.viewTask = id => {
 window.editTask = id => {
   const t = tasks[id];
 
-  const title = prompt("Task title", t.title || "");
-  if (title === null) return;
+  $("editTaskId").value = id;
+  $("editTitle").value = t.title || "";
+  $("editDescription").value = t.description || "";
+  $("editNeededBy").value = t.neededBy || "";
+  $("editPlannedDate").value = t.plannedDate || "";
+  $("editMaterials").value = t.materials || "";
+  $("editCost").value = t.cost || "";
+  $("editNotes").value = t.materialNotes || "";
+  $("editQuotes").value = t.quotes || "";
 
-  const description = prompt("Task description", t.description || "");
-  if (description === null) return;
+  $("editModal").classList.remove("hidden");
+};
 
-  const materials = prompt("Materials / Shopping List", t.materials || "");
-  if (materials === null) return;
+$("closeEditModal").onclick = () => {
+  $("editModal").classList.add("hidden");
+};
 
-  const cost = prompt("Estimated project cost", t.cost || "0.00");
-  if (cost === null) return;
-
-  const notes = prompt("Purchase notes", t.materialNotes || "");
-  if (notes === null) return;
-
-  const quotes = prompt("Contractor quotes", t.quotes || "");
-  if (quotes === null) return;
+$("saveEditTask").onclick = () => {
+  const id = $("editTaskId").value;
 
   update(ref(db, "tasks/" + id), {
-    title,
-    description,
-    materials,
-    cost,
-    materialNotes: notes,
-    quotes
+    title: $("editTitle").value,
+    description: $("editDescription").value,
+    neededBy: $("editNeededBy").value,
+    plannedDate: $("editPlannedDate").value,
+    materials: $("editMaterials").value,
+    cost: $("editCost").value,
+    materialNotes: $("editNotes").value,
+    quotes: $("editQuotes").value
   });
+
+  $("editModal").classList.add("hidden");
 };
 
 window.editShoppingItem = id => {
