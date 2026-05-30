@@ -50,16 +50,14 @@
     <label>Role
       <select id="currentRole">
         <option>Self</option>
-        <option>Mom</option
+        <option>Mom</option>
         <option>Contractor</option>
         <option>Other</option>
       </select>
     </label>
   </div>
 
-  <label>Profile Photo URL
-  <input id="memberPhoto" placeholder="Paste photo link" />
-  </label>
+  <input id="profilePhoto" placeholder="Paste photo link" />
 
   <button id="saveProfile">Save Profile</button>
 </section>
@@ -162,26 +160,8 @@
 </section>
   
 <section id="members" class="tab">
-  <form id="memberForm" class="panel">
-    <h2>Add member</h2>
-
-    <div class="grid two">
-      <label>Name<input id="memberName" required /></label>
-      <label>Role
-        <select id="memberRole">
-          <option>Mom</option>
-          <option>Self</option>
-          <option>Contractor</option>
-          <option>Other</option>
-        </select>
-      </label>
-    </div>
-
-    <label>Contact info<input id="memberContact" placeholder="Phone or email" /></label>
-    <<label>Photo Upload<input id="memberPhoto" placeholder="Paste photo link" /></label>
-    <button type="submit">Add Member</button>
-  </form>
-
+  <h2>Registered Members</h2>
+  <p class="small">People who have registered will appear here.</p>
   <div id="memberList" class="cards"></div>
 </section>
 
