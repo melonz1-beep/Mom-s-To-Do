@@ -97,12 +97,65 @@ if ($("currentRole")) $("currentRole").value = localStorage.helpRole || "Self";
 
 if ($("saveProfile")) {
   $("saveProfile").onclick = () => {
+
     const name = $("currentUser").value.trim();
+    const role = $("currentRole").value;
+    const photo = $("profilePhoto")?.value || "";
 
     if (!name) {
       alert("Please enter your name before continuing.");
       return;
     }
+
+    localStorage.helpName = name;
+    localStorage.helpRole = role;
+
+    const existing = Object.entries(members).find(([id, m]) =>
+      String(m.name || "").toLowerCase() === name.toLowerCase()
+    );
+
+    if (existing) {
+
+      const [id] = existing;
+
+      update(ref(db, "members/" + id), {
+        name,
+        role,
+        photo,
+        active: true,
+        updatedAt: Date.now()
+      });
+
+      alert("Profile updated.");
+
+    } else {
+
+      const r = push(membersRef);
+
+      set(r, {
+        name,
+        role,
+        contact: "",
+        photo,
+        active: true,
+        registeredAt: Date.now()
+      });
+
+      alert("Profile saved.");
+    }
+
+    $("currentUser").value = "";
+    $("currentRole").value = "Self";
+
+    if ($("profilePhoto")) {
+      $("profilePhoto").value = "";
+    }
+
+    document.querySelector('[data-tab="dashboard"]')?.click();
+
+    render();
+  };
+}
 
     localStorage.helpName = name;
     localStorage.helpRole = $("currentRole").value;
@@ -253,23 +306,6 @@ if ($("shoppingForm")) {
   };
 }
 
-if ($("memberForm")) {
-  $("memberForm").onsubmit = e => {
-    e.preventDefault();
-  
-
-    const r = push(membersRef);
-    set(r, {
-      name: $("memberName").value,
-      role: $("memberRole").value,
-      contact: $("memberContact").value,
-      photo: $("memberPhoto") ? $("memberPhoto").value : "",
-      active: true
-    });
-
-    e.target.reset();
-  };
-}
 
 if ($("contactForm")) {
   $("contactForm").onsubmit = e => {
