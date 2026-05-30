@@ -254,30 +254,31 @@ if ($("taskForm")) {
       createdAt: Date.now(),
       completedAt: ""
     });
-     addNotification(
+
+    addNotification(
   "New task added: " + $("title").value,
   newRef.key
 );
-      const item = row.querySelector(".matName").value.trim();
-      const quantity = row.querySelector(".matQty").value.trim();
-      const costEach = row.querySelector(".matCost").value.trim();
-      if (!item) return;
 
-      const s = push(shoppingRef);
-      set(s, {
-        item,
-        quantity,
-        cost: costEach,
-        totalCost: (Number(quantity || 0) * Number(costEach || 0)).toFixed(2),
-        project: $("linkedProject").value || $("title").value,
-        notes: $("materialNotes").value || "",
-        purchased: false,
-        taskId: newRef.key,
-        createdAt: Date.now()
-      });
-    });
+materialRows().forEach(row => {
+  const item = row.querySelector(".matName").value.trim();
+  const quantity = row.querySelector(".matQty").value.trim();
+  const costEach = row.querySelector(".matCost").value.trim();
+  if (!item) return;
 
-    e.target.reset();
+  const s = push(shoppingRef);
+  set(s, {
+    item,
+    quantity,
+    cost: costEach,
+    totalCost: (Number(quantity || 0) * Number(costEach || 0)).toFixed(2),
+    project: $("linkedProject").value || $("title").value,
+    notes: $("materialNotes").value || "",
+    purchased: false,
+    taskId: newRef.key,
+    createdAt: Date.now()
+  });
+});
     $("materialsList").innerHTML = "";
     addMaterialRow();
     alert("Task added live.");
