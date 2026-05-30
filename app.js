@@ -157,25 +157,6 @@ if ($("saveProfile")) {
   };
 }
 
-    localStorage.helpName = name;
-    localStorage.helpRole = $("currentRole").value;
-
-    const r = push(membersRef);
-
-set(r, {
-  name: name,
-  role: $("currentRole").value,
-  contact: "",
-  photo: $("profilePhoto")?.value || "",
-  active: true,
-  registeredAt: Date.now()
-});
-
-    alert("Profile saved. You can now add tasks.");
-    render();
-  };
-}
-
 document.querySelectorAll(".tabs button").forEach(btn => {
   btn.onclick = () => {
     const tab = document.getElementById(btn.dataset.tab);
