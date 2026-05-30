@@ -341,7 +341,6 @@ function card(id, t) {
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
-      <p class="small">
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
 <p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
 <p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
