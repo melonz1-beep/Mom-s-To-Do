@@ -624,6 +624,22 @@ window.deleteShoppingItem = id => {
   }
 };
 
+if ($("deleteAllCompletedBtn")) {
+  $("deleteAllCompletedBtn").onclick = async () => {
+
+    if (!confirm("Delete ALL completed tasks? This cannot be undone.")) {
+      return;
+    }
+
+    Object.entries(tasks).forEach(([id, t]) => {
+      if (t.status === "Completed") {
+        remove(ref(db, "tasks/" + id));
+      }
+    });
+
+    alert("Completed tasks deleted.");
+  };
+}
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
