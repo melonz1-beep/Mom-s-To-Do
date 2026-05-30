@@ -695,32 +695,6 @@ window.addEventListener("beforeinstallprompt", e => {
   });
 });
 
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt", e => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  if (document.getElementById("installAppBtn")) return;
-
-  const installBtn = document.createElement("button");
-  installBtn.id = "installAppBtn";
-  installBtn.innerText = "Install App";
-  installBtn.style.position = "fixed";
-  installBtn.style.bottom = "20px";
-  installBtn.style.right = "20px";
-  installBtn.style.zIndex = "9999";
-
-  document.body.appendChild(installBtn);
-
-  installBtn.addEventListener("click", async () => {
-    installBtn.remove();
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  });
-});
-
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
