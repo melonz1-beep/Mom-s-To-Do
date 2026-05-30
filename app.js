@@ -705,7 +705,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 window.addEventListener("load", () => {
   setTimeout(() => {
-    const splash = document.getElementById("splashScreen");
+    const splash = document.getElementById("splash");
 
     if (splash) {
       splash.style.transition = "opacity 0.5s ease";
