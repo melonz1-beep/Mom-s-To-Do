@@ -168,7 +168,8 @@ display:block;
 .hidden {
   display: none !important;
 }
-#splashScreen {
+
+#splash {
   position: fixed;
   inset: 0;
   background: #8FAF9A;
@@ -179,20 +180,21 @@ display:block;
   z-index: 99999;
 }
 
-#splashScreen img {
-  width: 180px;
-  height: 180px;
+#splash img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
   border-radius: 40px;
   margin-bottom: 20px;
 }
 
-#splashScreen h1 {
+#splash h1 {
   color: white;
   margin: 0;
   font-size: 2rem;
 }
 
-#splashScreen p {
+#splash p {
   color: #f7f4ef;
   margin-top: 10px;
   font-size: 1rem;
