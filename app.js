@@ -343,6 +343,7 @@ function card(id, t) {
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
       <p class="small"><b>Project:</b> ${esc(s.project || "None")}</p>
+      ${s.taskId ? `<p class="small"><b>Linked Task:</b> ${esc(tasks[s.taskId]?.title || "Task")}</p>` : ""}
       <p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
       ${s.taskId ? `<p class="small"><b>Linked Task:</b> ${esc(tasks[s.taskId]?.title || "Task")}</p>` : ""}
       <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
@@ -479,11 +480,12 @@ function renderShopping() {
         <p class="small"><b>Total Estimated Cost:</b> ${money(total)}</p>
         <p class="small"><b>Project:</b> ${esc(s.project || "None")}</p>
         <p class="small"><b>Notes:</b> ${esc(s.notes || "None")}</p>
-
         <label class="checkbox">
           <input type="checkbox" ${s.purchased ? "checked" : ""} onchange="toggleShoppingPurchased('${id}', this.checked)" />
           Purchased
         </label>
+
+        ${s.taskId ? `<button onclick="viewTask('${s.taskId}')">View Linked Task</button>` : ""}
 
         <button onclick="editShoppingItem('${id}')">Edit</button>
         <button onclick="deleteShoppingItem('${id}')">Remove</button>
