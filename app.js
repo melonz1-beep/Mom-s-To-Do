@@ -173,20 +173,7 @@ if ($("taskForm")) {
     const newRef = push(tasksRef);
     const materialNames = getMaterialNames();
     const totalCost = calculateMaterialTotal();
-    let photoUrl = "";
-
-try {
-  const file = $("photoFile")?.files?.[0];
-
-  if (file) {
-    const fileRef = storageRef(storage, "taskPhotos/" + Date.now() + "-" + file.name);
-    await uploadBytes(fileRef, file);
-    photoUrl = await getDownloadURL(fileRef);
-  }
-} catch (err) {
-  alert("Photo upload failed, but task will still be saved.");
-  console.error(err);
-}
+    7const photoUrl = $("photoUrl")?.value || "";
 
     set(newRef, {
       title: $("title").value,
@@ -200,7 +187,7 @@ try {
       linkedProject: $("linkedProject").value,
       cost: totalCost,
       quotes: $("quotes").value,
-      photoUrl: $("photoUrl")?.value || "",
+      photoUrl: photoUrl,
       status: "Open",
       requestedBy: p.name,
       assignedTo: "",
@@ -263,12 +250,7 @@ if ($("shoppingForm")) {
 if ($("memberForm")) {
   $("memberForm").onsubmit = e => {
     e.preventDefault();
-    
-    if (!localStorage.helpName) {
-  alert("Please register first before adding a task.");
-  document.querySelector('[data-tab="register"]')?.click();
-  return;
-    }
+  
 
     const r = push(membersRef);
     set(r, {
