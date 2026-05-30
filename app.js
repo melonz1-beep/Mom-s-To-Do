@@ -168,12 +168,18 @@ function markPastDue() {
 if ($("taskForm")) {
   $("taskForm").onsubmit = async e => {
     e.preventDefault();
+    
+    if (!localStorage.helpName) {
+    alert("Please register first before adding a task.");
+    document.querySelector('[data-tab="register"]')?.click();
+    return;
+    }
 
     const p = profile();
     const newRef = push(tasksRef);
     const materialNames = getMaterialNames();
     const totalCost = calculateMaterialTotal();
-    7const photoUrl = $("photoUrl")?.value || "";
+    const photoUrl = $("photoUrl")?.value || "";
 
     set(newRef, {
       title: $("title").value,
