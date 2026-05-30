@@ -323,7 +323,12 @@ function card(id, t) {
 
 function actions(id, t) {
   if (t.status === "Completed") {
-    return `<div class="actions"><button onclick="restoreTask('${id}')">Restore</button></div>`;
+  return `
+    <div class="actions">
+      <button onclick="restoreTask('${id}')">Restore</button>
+      <button onclick="deleteTask('${id}')">Delete</button>
+    </div>
+  `;
   }
 
   return `
