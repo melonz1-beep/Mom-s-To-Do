@@ -14,25 +14,11 @@
       <p>Family task board for helping Mom</p>
     </div>
   </header>
-
-  <main>
-    <section class="panel profile-panel">
-      <h2>Who are you?</h2>
-      <div class="grid two">
-        <label>Your name<input id="currentUser" placeholder="Melissa, Mom, Sarah..." /></label>
-        <label>Role
-          <select id="currentRole">
-            <option>Self</option>
-            <option>Contractor</option>
-            <option>Other</option>
-          </select>
-        </label>
-      </div>
-      <button id="saveProfile">Save profile</button>
-    </section>
+    
 
     <nav class="tabs">
       <button data-tab="dashboard" class="active">Dashboard</button>
+      <button data-tab="register">Register</button>
       <button data-tab="tasks">Tasks</button>
       <button data-tab="add">Add Task</button>
       <button data-tab="members">Members</button>
@@ -52,6 +38,32 @@
       <h2>Urgent & Past Due</h2>
       <div id="urgentList" class="cards"></div>
     </section>
+    <section id="register" class="tab">
+
+    <section class="panel profile-panel">
+    <h2>Register / Who are you?</h2>
+
+    <div class="grid two">
+      <label>Your name
+        <input id="currentUser" placeholder="Melissa, Mom, Sarah..." />
+      </label>
+
+      <label>Role
+        <select id="currentRole">
+          <option>Self</option>
+          <option>Mom</option>
+          <option>Daughter</option>
+          <option>Sibling</option>
+          <option>Contractor</option>
+          <option>Other</option>
+        </select>
+      </label>
+    </div>
+
+    <button id="saveProfile">Save profile</button>
+  </section>
+    </section>
+  
 
     <section id="tasks" class="tab">
       <div class="toolbar">
