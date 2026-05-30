@@ -701,3 +701,17 @@ document.addEventListener("DOMContentLoaded", () => {
   $("dashboard")?.classList.add("active");
   document.querySelector('[data-tab="dashboard"]')?.classList.add("active");
 });
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    const splash = document.getElementById("splashScreen");
+
+    if (splash) {
+      splash.style.transition = "opacity 0.5s ease";
+      splash.style.opacity = "0";
+
+      setTimeout(() => {
+        splash.remove();
+      }, 500);
+    }
+  }, 2000);
+});
