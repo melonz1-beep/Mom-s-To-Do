@@ -39,30 +39,33 @@
       <div id="urgentList" class="cards"></div>
     </section>
     <section id="register" class="tab">
+<section class="panel profile-panel">
+  <h2>Register / Who are you?</h2>
 
-    <section class="panel profile-panel">
-    <h2>Register / Who are you?</h2>
+  <div class="grid two">
+    <label>Your name
+      <input id="currentUser" placeholder="Melissa, Mom, Sarah..." />
+    </label>
 
-    <div class="grid two">
-      <label>Your name
-        <input id="currentUser" placeholder="Melissa, Mom, Sarah..." />
-      </label>
+    <label>Role
+      <select id="currentRole">
+        <option>Self</option>
+        <option>Mom</option>
+        <option>Daughter</option>
+        <option>Sibling</option>
+        <option>Contractor</option>
+        <option>Other</option>
+      </select>
+    </label>
+  </div>
 
-      <label>Role
-        <select id="currentRole">
-          <option>Self</option>
-          <option>Mom</option>
-          <option>Daughter</option>
-          <option>Sibling</option>
-          <option>Contractor</option>
-          <option>Other</option>
-        </select>
-      </label>
-    </div>
+  <label>Profile Photo URL
+    <input id="profilePhoto"
+           placeholder="https://i.postimg.cc/...jpg" />
+  </label>
 
-    <button id="saveProfile">Save profile</button>
-  </section>
-    </section>
+  <button id="saveProfile">Save Profile</button>
+</section>
   
 
     <section id="tasks" class="tab">
