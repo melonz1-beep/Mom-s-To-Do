@@ -719,3 +719,6 @@ window.addEventListener("load", () => {
     }
   }, 2000);
 });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}
