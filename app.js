@@ -97,9 +97,27 @@ if ($("currentRole")) $("currentRole").value = localStorage.helpRole || "Self";
 
 if ($("saveProfile")) {
   $("saveProfile").onclick = () => {
-    localStorage.helpName = $("currentUser").value || "Family Member";
+    const name = $("currentUser").value.trim();
+
+    if (!name) {
+      alert("Please enter your name before continuing.");
+      return;
+    }
+
+    localStorage.helpName = name;
     localStorage.helpRole = $("currentRole").value;
-    alert("Profile saved");
+
+    const r = push(membersRef);
+    set(r, {
+      name: name,
+      role: $("currentRole").value,
+      contact: "",
+      photo: "",
+      active: true,
+      registeredAt: Date.now()
+    });
+
+    alert("Profile saved. You can now add tasks.");
     render();
   };
 }
@@ -244,6 +262,12 @@ if ($("shoppingForm")) {
 if ($("memberForm")) {
   $("memberForm").onsubmit = e => {
     e.preventDefault();
+    
+    if (!localStorage.helpName) {
+  alert("Please register first before adding a task.");
+  document.querySelector('[data-tab="register"]')?.click();
+  return;
+    }
 
     const r = push(membersRef);
     set(r, {
