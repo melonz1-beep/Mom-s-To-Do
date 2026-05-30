@@ -477,6 +477,7 @@ function renderShopping() {
         <p class="small"><b>Cost Each:</b> ${money(s.cost)}</p>
         <p class="small"><b>Total Estimated Cost:</b> ${money(total)}</p>
         <p class="small"><b>Project:</b> ${esc(s.project || "None")}</p>
+        ${s.taskId ? `<p class="small"><b>Linked Task:</b> ${esc(tasks[s.taskId]?.title || "Task")}</p>` : ""}
         <p class="small"><b>Notes:</b> ${esc(s.notes || "None")}</p>
         <label class="checkbox">
           <input type="checkbox" ${s.purchased ? "checked" : ""} onchange="toggleShoppingPurchased('${id}', this.checked)" />
