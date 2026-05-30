@@ -108,14 +108,15 @@ if ($("saveProfile")) {
     localStorage.helpRole = $("currentRole").value;
 
     const r = push(membersRef);
-    set(r, {
-      name: name,
-      role: $("currentRole").value,
-      contact: "",
-      photo: "",
-      active: true,
-      registeredAt: Date.now()
-    });
+
+set(r, {
+  name: name,
+  role: $("currentRole").value,
+  contact: "",
+  photo: $("profilePhoto")?.value || "",
+  active: true,
+  registeredAt: Date.now()
+});
 
     alert("Profile saved. You can now add tasks.");
     render();
