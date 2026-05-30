@@ -254,8 +254,10 @@ if ($("taskForm")) {
       createdAt: Date.now(),
       completedAt: ""
     });
-addNotification("New task added: " + $("title").value, newRef.key);
-    materialRows().forEach(row => {
+     addNotification(
+  "New task added: " + $("title").value,
+  newRef.key
+);
       const item = row.querySelector(".matName").value.trim();
       const quantity = row.querySelector(".matQty").value.trim();
       const costEach = row.querySelector(".matCost").value.trim();
@@ -512,6 +514,21 @@ function renderShopping() {
   }).join("") || "<p>No shopping items needed.</p>";
 }
 
+function renderNotifications() {
+  if (!$("notificationList")) return;
+
+  $("notificationList").innerHTML = Object.entries(notifications)
+    .sort((a, b) => b[1].createdAt - a[1].createdAt)
+    .map(([id, n]) => `
+      <article class="card">
+        <p>${esc(n.message)}</p>
+        <p class="small">${new Date(n.createdAt).toLocaleString()}</p>
+        ${n.taskId ? `<button onclick="viewTask('${n.taskId}')">View Task</button>` : ""}
+        <button onclick="deleteNotification('${id}')">Delete</button>
+      </article>
+    `).join("") || "<p>No notifications yet.</p>";
+}
+
 window.viewTask = id => {
   const t = tasks[id];
 
@@ -647,6 +664,7 @@ window.reassign = id => {
   if (name) update(ref(db, "tasks/" + id), { assignedTo: name, status: "Accepted" });
 };
 
+
 window.completeTask = id => {
   update(ref(db, "tasks/" + id), {
     status: "Completed",
@@ -655,6 +673,10 @@ window.completeTask = id => {
   });
 
   addNotification("Task completed: " + (tasks[id]?.title || "Task"), id);
+};
+
+window.deleteNotification = id => {
+  remove(ref(db, "notifications/" + id));
 };
 
 window.restoreTask = id => update(ref(db, "tasks/" + id), {
