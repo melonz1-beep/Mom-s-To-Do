@@ -168,3 +168,32 @@ display:block;
 .hidden {
   display: none !important;
 }
+#splashScreen {
+  position: fixed;
+  inset: 0;
+  background: #8FAF9A;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+#splashScreen img {
+  width: 180px;
+  height: 180px;
+  border-radius: 40px;
+  margin-bottom: 20px;
+}
+
+#splashScreen h1 {
+  color: white;
+  margin: 0;
+  font-size: 2rem;
+}
+
+#splashScreen p {
+  color: #f7f4ef;
+  margin-top: 10px;
+  font-size: 1rem;
+}
