@@ -27,6 +27,9 @@ let members = {};
 let contacts = {};
 let shoppingItems = {};
 
+const notificationsRef = ref(db, "notifications");
+let notifications = {};
+
 const $ = id => document.getElementById(id);
 const today = () => new Date().toISOString().slice(0, 10);
 
@@ -175,6 +178,11 @@ onValue(membersRef, snap => {
   renderMembers();
 });
 
+onValue(notificationsRef, snap => {
+  notifications = snap.val() || {};
+  renderNotifications();
+});
+
 onValue(contactsRef, snap => {
   contacts = snap.val() || {};
   renderContacts();
@@ -196,6 +204,17 @@ function markPastDue() {
     if (t.status !== "Completed" && t.plannedDate && t.plannedDate < today() && t.status !== "Past Due") {
       update(ref(db, "tasks/" + id), { status: "Past Due" });
     }
+  });
+}
+
+function addNotification(message, taskId = "") {
+  const n = push(notificationsRef);
+
+  set(n, {
+    message,
+    taskId,
+    read: false,
+    createdAt: Date.now()
   });
 }
 
@@ -235,7 +254,7 @@ if ($("taskForm")) {
       createdAt: Date.now(),
       completedAt: ""
     });
-
+addNotification("New task added: " + $("title").value, newRef.key);
     materialRows().forEach(row => {
       const item = row.querySelector(".matName").value.trim();
       const quantity = row.querySelector(".matQty").value.trim();
@@ -628,11 +647,15 @@ window.reassign = id => {
   if (name) update(ref(db, "tasks/" + id), { assignedTo: name, status: "Accepted" });
 };
 
-window.completeTask = id => update(ref(db, "tasks/" + id), {
-  status: "Completed",
-  completedAt: Date.now(),
-  completedDate: new Date().toISOString().split("T")[0]
-});
+window.completeTask = id => {
+  update(ref(db, "tasks/" + id), {
+    status: "Completed",
+    completedAt: Date.now(),
+    completedDate: new Date().toISOString().split("T")[0]
+  });
+
+  addNotification("Task completed: " + (tasks[id]?.title || "Task"), id);
+};
 
 window.restoreTask = id => update(ref(db, "tasks/" + id), {
   status: "Open",
