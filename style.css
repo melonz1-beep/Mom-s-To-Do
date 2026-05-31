@@ -110,13 +110,24 @@ color:#7c6288;
 }
 
 #notificationBadge {
-  background: #ff7b9c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+
+  background: #ff5f8f;
   color: white;
-  border-radius: 999px;
-  padding: 2px 8px;
+
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+
   margin-left: 6px;
-  font-size: 0.8rem;
+  padding: 0 4px;
 }
+
 .card.pastdue{background:#ffe9ee;border:2px solid #ff7b9c}
 .card.completed{background:#edf8ea}
 
