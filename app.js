@@ -386,20 +386,18 @@ function actions(id, t) {
   }
 
   return `
-    <div class="actions">
-      <button onclick="markNotificationRead('${id}');viewTask('${n.taskId}')">
-  View Task
-</button>
-      <button onclick="acceptTask('${id}')">Accept</button>
-      <button onclick="setStatus('${id}','Started')">Started</button>
-      <button onclick="setStatus('${id}','In Progress')">In Progress</button>
-      <button onclick="reschedule('${id}')">Reschedule</button>
-      <button onclick="reassign('${id}')">Reassign</button>
-      <button onclick="editTask('${id}')">Edit</button>
-      <button onclick="completeTask('${id}')">Complete</button>
-      <button onclick="deleteTask('${id}')">Delete</button>
-    </div>
-  `;
+  <div class="actions">
+    <button onclick="viewTask('${id}')">View</button>
+    <button onclick="acceptTask('${id}')">Accept</button>
+    <button onclick="setStatus('${id}','Started')">Started</button>
+    <button onclick="setStatus('${id}','In Progress')">In Progress</button>
+    <button onclick="reschedule('${id}')">Reschedule</button>
+    <button onclick="reassign('${id}')">Reassign</button>
+    <button onclick="editTask('${id}')">Edit</button>
+    <button onclick="completeTask('${id}')">Complete</button>
+    <button onclick="deleteTask('${id}')">Delete</button>
+  </div>
+`;
 }
 
 function render() {
@@ -582,7 +580,7 @@ function renderNotifications() {
         <p>${esc(n.message)}</p>
         <p class="small">${new Date(n.createdAt).toLocaleString()}</p>
         <p class="small"><b>Status:</b> ${n.read ? "Read" : "Unread"}</p>
-        ${n.taskId ? `<button onclick="viewTask('${n.taskId}')">View Task</button>` : ""}
+        ${n.taskId ? `<button onclick="markNotificationRead('${id}');viewTask('${n.taskId}')">View Task</button>` : ""}
         <button onclick="markNotificationRead('${id}')">Mark Read</button>
         <button onclick="deleteNotification('${id}')">Delete</button>
       </article>
