@@ -423,8 +423,40 @@ if ($("pastDueBadge")) $("pastDueBadge").textContent = pastDueCount;
   if ($("urgentList")) $("urgentList").innerHTML =
     active.filter(([id, t]) => t.priority === "Urgent" || t.status === "Past Due").map(([id, t]) => card(id, t)).join("") || "<p>No urgent or past-due items.</p>";
 
+  
   if ($("openCount")) $("openCount").textContent =
     active.filter(([i, t]) => t.status === "Open").length;
+
+  const openTaskCount =
+  active.filter(([i, t]) => t.status === "Open").length;
+
+const pastDueCount =
+  active.filter(([i, t]) => t.status === "Past Due").length;
+
+const shoppingCount =
+  Object.values(shoppingItems).filter(i => !i.purchased).length;
+
+const unreadCount =
+  Object.values(notifications).filter(n => !n.read).length;
+  if ($("pastDueBadge")) {
+  $("pastDueBadge").style.display =
+    pastDueCount > 0 ? "inline-flex" : "none";
+}
+
+if ($("openTaskBadge")) {
+  $("openTaskBadge").style.display =
+    openTaskCount > 0 ? "inline-flex" : "none";
+}
+
+if ($("shoppingBadge")) {
+  $("shoppingBadge").style.display =
+    shoppingCount > 0 ? "inline-flex" : "none";
+}
+
+if ($("notificationBadge")) {
+  $("notificationBadge").style.display =
+    unreadCount > 0 ? "inline-flex" : "none";
+}
 
   if ($("progressCount")) $("progressCount").textContent =
     active.filter(([i, t]) => ["Accepted", "Started", "In Progress"].includes(t.status)).length;
