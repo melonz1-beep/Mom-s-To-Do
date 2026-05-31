@@ -237,3 +237,6 @@ display:block;
   justify-content: center;
   vertical-align: middle;
 }
+#pastDueBadge {
+  background: #c62828;
+}
