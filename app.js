@@ -568,7 +568,9 @@ function renderNotifications() {
   const unreadCount = Object.values(notifications).filter(n => !n.read).length;
 
   if ($("notificationBadge")) {
-    $("notificationBadge").textContent = unreadCount;
+  $("notificationBadge").textContent = unreadCount;
+  $("notificationBadge").style.display =
+    unreadCount > 0 ? "inline-flex" : "none";
   }
 
   if (!$("notificationList")) return;
