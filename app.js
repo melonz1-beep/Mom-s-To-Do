@@ -683,14 +683,22 @@ window.editShoppingItem = id => {
 
 window.acceptTask = id => {
   const p = profile();
-  const date = prompt("Planned completion date, YYYY-MM-DD", today());
 
-  update(ref(db, "tasks/" + id), {
-    assignedTo: p.name,
-    assignedRole: p.role,
-    plannedDate: date || "",
-    status: "Accepted"
-  });
+  const picker = $("hiddenDatePicker");
+  if (!picker) return;
+
+  picker.value = today();
+
+  picker.onchange = () => {
+    update(ref(db, "tasks/" + id), {
+      assignedTo: p.name,
+      assignedRole: p.role,
+      plannedDate: picker.value,
+      status: "Accepted"
+    });
+  };
+
+  picker.showPicker ? picker.showPicker() : picker.click();
 };
 
 window.setStatus = (id, status) => update(ref(db, "tasks/" + id), { status });
