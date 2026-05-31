@@ -420,11 +420,6 @@ if ($("pastDueBadge")) $("pastDueBadge").textContent = pastDueCount;
 if ($("shoppingBadge")) $("shoppingBadge").textContent = shoppingCount;
 if ($("notificationBadge")) $("notificationBadge").textContent = unreadCount;
 
-if ($("pastDueBadge")) $("pastDueBadge").style.display = pastDueCount > 0 ? "inline-flex" : "none";
-if ($("openTaskBadge")) $("openTaskBadge").style.display = openTaskCount > 0 ? "inline-flex" : "none";
-if ($("shoppingBadge")) $("shoppingBadge").style.display = shoppingCount > 0 ? "inline-flex" : "none";
-if ($("notificationBadge")) $("notificationBadge").style.display = unreadCount > 0 ? "inline-flex" : "none";
-
   const filtered = active.filter(([id, t]) =>
     (fs === "all" || t.status === fs) &&
     (fp === "all" || t.priority === fp)
