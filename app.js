@@ -385,7 +385,9 @@ function actions(id, t) {
 
   return `
     <div class="actions">
-      <button onclick="viewTask('${id}')">View</button>
+      <button onclick="markNotificationRead('${id}');viewTask('${n.taskId}')">
+  View Task
+</button>
       <button onclick="acceptTask('${id}')">Accept</button>
       <button onclick="setStatus('${id}','Started')">Started</button>
       <button onclick="setStatus('${id}','In Progress')">In Progress</button>
