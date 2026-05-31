@@ -517,6 +517,11 @@ function renderShopping() {
 
 function renderNotifications() {
   if (!$("notificationList")) return;
+  const unreadCount = Object.values(notifications).filter(n => !n.read).length;
+
+if ($("notificationBadge")) {
+  $("notificationBadge").textContent = unreadCount;
+}
 
   $("notificationList").innerHTML = Object.entries(notifications)
     .sort((a, b) => b[1].createdAt - a[1].createdAt)
