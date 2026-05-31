@@ -403,6 +403,11 @@ function render() {
   const fs = $("filterStatus")?.value || "all";
   const fp = $("filterPriority")?.value || "all";
   const active = arr.filter(([id, t]) => t.status !== "Completed");
+  const openCount = active.filter(([i, t]) => t.status === "Open").length;
+const pastDueCount = active.filter(([i, t]) => t.status === "Past Due").length;
+
+if ($("openTaskBadge")) $("openTaskBadge").textContent = openCount;
+if ($("pastDueBadge")) $("pastDueBadge").textContent = pastDueCount;
 
   const filtered = active.filter(([id, t]) =>
     (fs === "all" || t.status === fs) &&
@@ -488,6 +493,11 @@ function renderContacts() {
 
 function renderShopping() {
   if (!$("shoppingList")) return;
+  const notPurchasedCount = Object.values(shoppingItems).filter(s => !s.purchased).length;
+
+if ($("shoppingBadge")) {
+  $("shoppingBadge").textContent = notPurchasedCount;
+}
 
   $("shoppingList").innerHTML = Object.entries(shoppingItems).map(([id, s]) => {
     const total = s.totalCost || (Number(s.quantity || 0) * Number(s.cost || 0)).toFixed(2);
@@ -687,6 +697,21 @@ window.completeTask = id => {
 window.deleteNotification = id => {
   remove(ref(db, "notifications/" + id));
 };
+window.markNotificationRead = id => {
+  update(ref(db, "notifications/" + id), { read: true });
+};
+
+window.markAllNotificationsRead = () => {
+  Object.keys(notifications).forEach(id => {
+    update(ref(db, "notifications/" + id), { read: true });
+  });
+};
+
+if ($("markAllReadBtn")) {
+  $("markAllReadBtn").onclick = () => {
+    markAllNotificationsRead();
+  };
+}
 
 window.restoreTask = id => update(ref(db, "tasks/" + id), {
   status: "Open",
