@@ -109,23 +109,23 @@ background:#f4ebf8;
 color:#7c6288;
 }
 
-#notificationBadge {
+  #notificationBadge,
+#openTaskBadge,
+#pastDueBadge,
+#shoppingBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   min-width: 20px;
   height: 20px;
-
   background: #ff5f8f;
   color: white;
-
   border-radius: 50%;
   font-size: 12px;
   font-weight: bold;
-
   margin-left: 6px;
   padding: 0 4px;
+}
 }
 
 .card.pastdue{background:#ffe9ee;border:2px solid #ff7b9c}
