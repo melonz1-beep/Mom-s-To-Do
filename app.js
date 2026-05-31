@@ -403,11 +403,27 @@ function render() {
   const fs = $("filterStatus")?.value || "all";
   const fp = $("filterPriority")?.value || "all";
   const active = arr.filter(([id, t]) => t.status !== "Completed");
-  const openCount = active.filter(([i, t]) => t.status === "Open").length;
-const pastDueCount = active.filter(([i, t]) => t.status === "Past Due").length;
+  const openTaskCount =
+  active.filter(([i, t]) => t.status === "Open").length;
 
-if ($("openTaskBadge")) $("openTaskBadge").textContent = openCount;
+const pastDueCount =
+  active.filter(([i, t]) => t.status === "Past Due").length;
+
+const shoppingCount =
+  Object.values(shoppingItems).filter(i => !i.purchased).length;
+
+const unreadCount =
+  Object.values(notifications).filter(n => !n.read).length;
+
+if ($("openTaskBadge")) $("openTaskBadge").textContent = openTaskCount;
 if ($("pastDueBadge")) $("pastDueBadge").textContent = pastDueCount;
+if ($("shoppingBadge")) $("shoppingBadge").textContent = shoppingCount;
+if ($("notificationBadge")) $("notificationBadge").textContent = unreadCount;
+
+if ($("pastDueBadge")) $("pastDueBadge").style.display = pastDueCount > 0 ? "inline-flex" : "none";
+if ($("openTaskBadge")) $("openTaskBadge").style.display = openTaskCount > 0 ? "inline-flex" : "none";
+if ($("shoppingBadge")) $("shoppingBadge").style.display = shoppingCount > 0 ? "inline-flex" : "none";
+if ($("notificationBadge")) $("notificationBadge").style.display = unreadCount > 0 ? "inline-flex" : "none";
 
   const filtered = active.filter(([id, t]) =>
     (fs === "all" || t.status === fs) &&
@@ -427,17 +443,7 @@ if ($("pastDueBadge")) $("pastDueBadge").textContent = pastDueCount;
   if ($("openCount")) $("openCount").textContent =
     active.filter(([i, t]) => t.status === "Open").length;
 
-  const openTaskCount =
-  active.filter(([i, t]) => t.status === "Open").length;
 
-const pastDueCount =
-  active.filter(([i, t]) => t.status === "Past Due").length;
-
-const shoppingCount =
-  Object.values(shoppingItems).filter(i => !i.purchased).length;
-
-const unreadCount =
-  Object.values(notifications).filter(n => !n.read).length;
   if ($("pastDueBadge")) {
   $("pastDueBadge").style.display =
     pastDueCount > 0 ? "inline-flex" : "none";
