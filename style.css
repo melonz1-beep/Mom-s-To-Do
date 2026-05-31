@@ -109,6 +109,14 @@ background:#f4ebf8;
 color:#7c6288;
 }
 
+#notificationBadge {
+  background: #ff7b9c;
+  color: white;
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 6px;
+  font-size: 0.8rem;
+}
 .card.pastdue{background:#ffe9ee;border:2px solid #ff7b9c}
 .card.completed{background:#edf8ea}
 
