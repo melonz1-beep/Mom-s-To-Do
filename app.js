@@ -516,20 +516,23 @@ function renderShopping() {
 }
 
 function renderNotifications() {
-  if (!$("notificationList")) return;
   const unreadCount = Object.values(notifications).filter(n => !n.read).length;
 
-if ($("notificationBadge")) {
-  $("notificationBadge").textContent = unreadCount;
-}
+  if ($("notificationBadge")) {
+    $("notificationBadge").textContent = unreadCount;
+  }
+
+  if (!$("notificationList")) return;
 
   $("notificationList").innerHTML = Object.entries(notifications)
     .sort((a, b) => b[1].createdAt - a[1].createdAt)
     .map(([id, n]) => `
-      <article class="card">
+      <article class="card ${n.read ? "completed" : ""}">
         <p>${esc(n.message)}</p>
         <p class="small">${new Date(n.createdAt).toLocaleString()}</p>
+        <p class="small"><b>Status:</b> ${n.read ? "Read" : "Unread"}</p>
         ${n.taskId ? `<button onclick="viewTask('${n.taskId}')">View Task</button>` : ""}
+        <button onclick="markNotificationRead('${id}')">Mark Read</button>
         <button onclick="deleteNotification('${id}')">Delete</button>
       </article>
     `).join("") || "<p>No notifications yet.</p>";
