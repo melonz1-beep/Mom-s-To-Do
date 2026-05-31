@@ -23,14 +23,18 @@
 
     <nav class="tabs">
       <button data-tab="dashboard" class="active">Dashboard</button>
-      <button data-tab="register">Register</button>
-      <button data-tab="tasks">Tasks</button>
-      <button data-tab="add">Add Task</button>
-      <button data-tab="members">Members</button>
-      <button data-tab="calendar">Calendar</button>
-      <button data-tab="history">History</button>
-      <button data-tab="contacts">Emergency Contacts</button>
-      <button data-tab="shopping">Shopping List</button>
+      <button data-tab="dashboard" class="active">
+  Dashboard <span id="pastDueBadge">0</span>
+      </button>
+
+<button data-tab="tasks">
+  Tasks <span id="openTaskBadge">0</span>
+</button>
+
+<button data-tab="shopping">
+  Shopping List <span id="shoppingBadge">0</span>
+</button>
+
 <button data-tab="notifications">
   Notifications <span id="notificationBadge">0</span>
 </button>
@@ -251,9 +255,13 @@
 
 <section id="notifications" class="tab">
   <h2>Notifications</h2>
+
+  <button id="markAllReadBtn" type="button">
+    Mark All Read
+  </button>
+
   <div id="notificationList" class="cards"></div>
 </section>
-
       
   <div id="editModal" class="modal hidden">
   <div class="modalBox">
