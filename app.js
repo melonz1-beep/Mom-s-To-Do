@@ -420,11 +420,10 @@ const unreadCount =
 if ($("openTaskBadge")) $("openTaskBadge").textContent = openTaskCount;
 if ($("pastDueBadge")) $("pastDueBadge").textContent = pastDueCount;
 if ($("shoppingBadge")) $("shoppingBadge").textContent = shoppingCount;
-  if ($("notificationBadge")) {
-  $("notificationBadge").textContent = unreadCount;
+if ($("notificationBadge")) {
   $("notificationBadge").style.display =
     unreadCount > 0 ? "inline-flex" : "none";
-  }
+}
 
   const filtered = active.filter(([id, t]) =>
     (fs === "all" || t.status === fs) &&
@@ -458,11 +457,6 @@ if ($("openTaskBadge")) {
 if ($("shoppingBadge")) {
   $("shoppingBadge").style.display =
     shoppingCount > 0 ? "inline-flex" : "none";
-}
-
-if ($("notificationBadge")) {
-  $("notificationBadge").style.display =
-    unreadCount > 0 ? "inline-flex" : "none";
 }
 
   if ($("progressCount")) $("progressCount").textContent =
