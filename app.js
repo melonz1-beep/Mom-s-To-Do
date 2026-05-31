@@ -181,6 +181,7 @@ onValue(membersRef, snap => {
 onValue(notificationsRef, snap => {
   notifications = snap.val() || {};
   renderNotifications();
+  render();
 });
 
 onValue(contactsRef, snap => {
@@ -191,6 +192,7 @@ onValue(contactsRef, snap => {
 onValue(shoppingRef, snap => {
   shoppingItems = snap.val() || {};
   renderShopping();
+  render();
 });
 
 onValue(tasksRef, snap => {
