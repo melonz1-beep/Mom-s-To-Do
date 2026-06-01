@@ -386,15 +386,17 @@ function card(id, t) {
 }
 
 
-    <div class="actions">
-      <button onclick="restoreTask('${id}')">Restore</button>
-      <button onclick="deleteTask('${id}')">Delete</button>
-    </div>
-  `;
+    <
+  if (t.status === "Completed") {
+    return `
+      <div class="actions">
+        <button onclick="restoreTask('${id}')">Restore</button>
+        <button onclick="deleteTask('${id}')">Delete</button>
+      </div>
+    `;
   }
 
-  return `
-  function actions(id, t) {
+function actions(id, t) {
   if (t.status === "Completed") {
     return `
       <div class="actions">
@@ -407,7 +409,10 @@ function card(id, t) {
   return `
     <div class="actions">
       <button onclick="viewTask('${id}')">View</button>
-      ${t.status === "Open" ? `<button onclick="acceptTask('${id}')">Accept</button>` : ""}
+      ${t.status === "Open"
+        ? `<button onclick="acceptTask('${id}')">Accept</button>`
+        : ""
+      }
       <button onclick="setStatus('${id}','Started')">Started</button>
       <button onclick="setStatus('${id}','In Progress')">In Progress</button>
       <button onclick="reschedule('${id}')">Reschedule</button>
@@ -417,7 +422,7 @@ function card(id, t) {
       <button onclick="deleteTask('${id}')">Delete</button>
     </div>
   `;
-  }
+}
 
 function render() {
   const arr = sortTasks(Object.entries(tasks));
