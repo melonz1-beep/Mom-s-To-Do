@@ -371,6 +371,7 @@ function card(id, t) {
       <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
       <p class="small"><b>Quotes:</b> ${esc(t.quotes || "None")}</p>
       ${actions(id, t)}
+      <p class="small"><b>Requested By:</b> ${esc(t.requestedBy || "Unknown")}</p>
     </article>
   `;
 }
@@ -388,7 +389,10 @@ function actions(id, t) {
   return `
   <div class="actions">
     <button onclick="viewTask('${id}')">View</button>
-    <button onclick="acceptTask('${id}')">Accept</button>
+    ${t.status === "Open"
+  ? `<button onclick="acceptTask('${id}')">Accept</button>`
+  : ""
+    }
     <button onclick="setStatus('${id}','Started')">Started</button>
     <button onclick="setStatus('${id}','In Progress')">In Progress</button>
     <button onclick="reschedule('${id}')">Reschedule</button>
