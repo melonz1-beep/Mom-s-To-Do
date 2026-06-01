@@ -76,19 +76,29 @@
         <div><strong id="pastDueCount">0</strong><span>Past Due</span></div>
         <div><strong id="doneCount">0</strong><span>Completed</span></div>
       </div>
-      <div class="actions">
-  <button type="button" onclick="document.querySelector('[data-tab=&quot;tasks&quot;]').click()">
-    View All Tasks
-  </button>
+      <div class="stat-card clickable"
+     onclick="showTaskFilter('Open')">
+  <h1 id="openCount">0</h1>
+  <p>Open</p>
+</div>
 
-  <button type="button" onclick="document.querySelector('[data-tab=&quot;add&quot;]').click()">
-    Add New Task
-  </button>
+<div class="stat-card clickable"
+     onclick="showTaskFilter('In Progress')">
+  <h1 id="progressCount">0</h1>
+  <p>In Progress</p>
+</div>
 
-  <button type="button" onclick="document.querySelector('[data-tab=&quot;calendar&quot;]').click()">
-    View Calendar
-  </button>
-      </div>
+<div class="stat-card clickable"
+     onclick="showTaskFilter('Past Due')">
+  <h1 id="pastDueCount">0</h1>
+  <p>Past Due</p>
+</div>
+
+<div class="stat-card clickable"
+     onclick="showTaskFilter('Completed')">
+  <h1 id="doneCount">0</h1>
+  <p>Completed</p>
+</div>
       <h2>Urgent & Past Due</h2>
       <div id="urgentList" class="cards"></div>
     </section>
