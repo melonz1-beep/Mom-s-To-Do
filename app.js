@@ -700,8 +700,14 @@ window.acceptTask = id => {
       plannedDate: picker.value,
       status: "Accepted"
     });
-  };
 
+    addNotification(
+      `${p.name} accepted task: ${tasks[id]?.title}`,
+      id
+    );
+  };
+    
+  
   picker.showPicker ? picker.showPicker() : picker.click();
 };
 
