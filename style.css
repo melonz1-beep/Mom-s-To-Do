@@ -79,24 +79,38 @@ textarea{min-height:90px}
 .grid{display:grid;gap:14px}
 .two{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-margin:10px 0 20px;
+.stats,
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 10px 0 20px;
 }
 
-.stats div{
-background:white;
-border-radius:22px;
-padding:18px;
-text-align:center;
-box-shadow:0 4px 14px #00000008;
+.stats div,
+.stat-card {
+  background: white;
+  border-radius: 22px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 4px 14px #00000008;
 }
 
-.stats strong{display:block;font-size:2rem;color:#8b5ea7}
-.stats span{color:#8c7c8f}
-.cards{display:grid;gap:14px}
+.stat-card h1 {
+  display: block;
+  font-size: 2rem;
+  color: #8b5ea7;
+  margin: 0;
+}
+
+.stat-card p {
+  color: #8c7c8f;
+  margin: 4px 0 0;
+}
+
+.stat-card.clickable {
+  cursor: pointer;
+}
 
 .badge{
 display:inline-block;
@@ -126,7 +140,7 @@ color:#7c6288;
   margin-left: 6px;
   padding: 0 4px;
 }
-}
+
 
 .card.pastdue{background:#ffe9ee;border:2px solid #ff7b9c}
 .card.completed{background:#edf8ea}
@@ -136,11 +150,11 @@ color:#7c6288;
 .small{font-size:.92rem;color:#8d7f91}
 
 @media(max-width:700px){
-header{flex-direction:column;align-items:flex-start}
-.two,.stats{grid-template-columns:1fr}
-.tabs{flex-wrap:wrap}
-main{padding:12px}
-.panel,.card{border-radius:18px}
+  header{flex-direction:column;align-items:flex-start}
+  .two,.stats,.stats-grid{grid-template-columns:1fr}
+  .tabs{flex-wrap:wrap}
+  main{padding:12px}
+  .panel,.card{border-radius:18px}
 }
 .tab{
 display:none;
