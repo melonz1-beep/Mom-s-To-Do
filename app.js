@@ -764,7 +764,8 @@ window.reschedule = id => {
     if (picker.value) {
       update(ref(db, "tasks/" + id), {
         plannedDate: picker.value,
-        status: "Accepted"
+        status: "Accepted",
+        updatedAt: Date.now()
       });
     }
   };
