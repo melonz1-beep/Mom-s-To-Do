@@ -69,7 +69,9 @@
 
   </nav>
 
+  
 <section id="dashboard" class="tab active">
+  <p class="small">Tap a card to view tasks</p>
   <div class="stats-grid">
   <div class="stat-card clickable" onclick="showTaskFilter('Open')">
     <h1 id="openCount">0</h1>
@@ -91,6 +93,15 @@
     <p>Completed</p>
   </div>
 </div>
+  <div class="actions">
+  <button onclick="document.querySelector('[data-tab=&quot;add&quot;]').click()">
+    Add Task
+  </button>
+
+  <button onclick="document.querySelector('[data-tab=&quot;shopping&quot;]').click()">
+    Shopping List
+  </button>
+  </div>
 
   <h2>Urgent & Past Due</h2>
   <div id="urgentList" class="cards"></div>
