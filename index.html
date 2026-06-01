@@ -76,6 +76,19 @@
         <div><strong id="pastDueCount">0</strong><span>Past Due</span></div>
         <div><strong id="doneCount">0</strong><span>Completed</span></div>
       </div>
+      <div class="actions">
+  <button type="button" onclick="document.querySelector('[data-tab=&quot;tasks&quot;]').click()">
+    View All Tasks
+  </button>
+
+  <button type="button" onclick="document.querySelector('[data-tab=&quot;add&quot;]').click()">
+    Add New Task
+  </button>
+
+  <button type="button" onclick="document.querySelector('[data-tab=&quot;calendar&quot;]').click()">
+    View Calendar
+  </button>
+      </div>
       <h2>Urgent & Past Due</h2>
       <div id="urgentList" class="cards"></div>
     </section>
