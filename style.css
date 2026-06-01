@@ -304,3 +304,7 @@ display:block;
 .stat-card.clickable:active {
   transform: scale(.98);
 }
+#urgentList {
+  display: block;
+  text-align: center;
+}
