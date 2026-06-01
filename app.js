@@ -722,7 +722,8 @@ window.acceptTask = id => {
       assignedTo: p.name,
       assignedRole: p.role,
       plannedDate: picker.value,
-      status: "Accepted"
+      status: "Accepted",
+      updatedAt: Date.now()
     });
 
     addNotification(
@@ -739,7 +740,8 @@ window.setStatus = (id, status) => {
   const p = profile();
 
   const updates = {
-    status
+    status,
+    updatedAt: Date.now()
   };
 
   if (status === "Started" || status === "In Progress") {
