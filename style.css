@@ -282,3 +282,8 @@ display:block;
 .stat-card {
   cursor: pointer;
 }
+#dashboard h2,
+#urgentList {
+  padding-left: 18px;
+  padding-right: 18px;
+}
