@@ -768,7 +768,17 @@ window.reassign = id => {
   const name = prompt("Reassign to who?");
   if (name) update(ref(db, "tasks/" + id), { assignedTo: name, status: "Accepted" });
 };
+window.showTaskFilter = status => {
 
+  document.querySelector('[data-tab="tasks"]')?.click();
+
+  const filter = document.getElementById("filterStatus");
+
+  if (filter) {
+    filter.value = status;
+    render();
+  }
+};
 
 window.completeTask = id => {
   const p = profile();
