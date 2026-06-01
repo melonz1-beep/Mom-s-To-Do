@@ -781,7 +781,11 @@ window.completeTask = id => {
     completedDate: new Date().toISOString().split("T")[0],
     completedBy: p.name
   });
-
+addNotification(
+    `Task completed by ${p.name}: ${tasks[id]?.title || "Task"}`,
+    id
+  );
+};
 window.deleteNotification = id => {
   remove(ref(db, "notifications/" + id));
 };
