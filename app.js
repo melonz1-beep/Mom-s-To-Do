@@ -367,6 +367,17 @@ function card(id, t) {
 <p>${esc(t.description || "")}</p>
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
+      ${t.startedBy ? `
+<p class="small">
+  <b>Started By:</b> ${esc(t.startedBy)}
+</p>
+` : ""}
+
+${t.completedBy ? `
+<p class="small">
+  <b>Completed By:</b> ${esc(t.completedBy)}
+</p>
+` : ""}
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
 <p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
@@ -591,6 +602,8 @@ function renderNotifications() {
 
 window.viewTask = id => {
   const t = tasks[id];
+  ${t.startedBy ? `<p><b>Started By:</b> ${esc(t.startedBy)}</p>` : ""}
+${t.completedBy ? `<p><b>Completed By:</b> ${esc(t.completedBy)}</p>` : ""}
 
   $("viewTitle").textContent = t.title || "Task Details";
 
@@ -713,7 +726,24 @@ window.acceptTask = id => {
   picker.showPicker ? picker.showPicker() : picker.click();
 };
 
-window.setStatus = (id, status) => update(ref(db, "tasks/" + id), { status });
+window.setStatus = (id, status) => {
+  const p = profile();
+
+  const updates = {
+    status
+  };
+
+  if (status === "Started" || status === "In Progress") {
+    updates.startedBy = p.name;
+  }
+
+  update(ref(db, "tasks/" + id), updates);
+
+  addNotification(
+    `${p.name} changed "${tasks[id]?.title}" to ${status}`,
+    id
+  );
+};
 
 window.reschedule = id => {
   const picker = $("hiddenDatePicker");
@@ -740,11 +770,20 @@ window.reassign = id => {
 
 
 window.completeTask = id => {
+  const p = profile();
+
   update(ref(db, "tasks/" + id), {
     status: "Completed",
     completedAt: Date.now(),
-    completedDate: new Date().toISOString().split("T")[0]
+    completedDate: new Date().toISOString().split("T")[0],
+    completedBy: p.name
   });
+
+  addNotification(
+    `Task completed by ${p.name}: ${tasks[id]?.title || "Task"}`,
+    id
+  );
+};
 
   addNotification("Task completed: " + (tasks[id]?.title || "Task"), id);
 };
