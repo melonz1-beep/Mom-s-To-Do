@@ -370,17 +370,12 @@ function card(id, t) {
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
       ${t.startedBy ? `
-<p class="small">
-  <b>Started By:</b> ${t.startedBy ? `
-<span class="badge">
-  Started By: ${esc(t.startedBy)}
-</span>
+
+  <span class="badge">Started By: ${esc(t.startedBy)}</span>
 ` : ""}
 
 ${t.completedBy ? `
-<span class="badge">
-  Completed By: ${esc(t.completedBy)}
-</span>
+  <span class="badge">Completed By: ${esc(t.completedBy)}</span>
 ` : ""}
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
@@ -392,7 +387,10 @@ ${t.completedBy ? `
       
   `;
 }
-
+${actions(id, t)}
+    </article>
+  `;
+}
 function actions(id, t) {
   if (t.status === "Completed") {
   return `
