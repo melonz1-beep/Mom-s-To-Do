@@ -371,14 +371,16 @@ function card(id, t) {
       <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
       ${t.startedBy ? `
 <p class="small">
-  <b>Started By:</b> ${esc(t.startedBy)}
-</p>
+  <b>Started By:</b> ${t.startedBy ? `
+<span class="badge">
+  Started By: ${esc(t.startedBy)}
+</span>
 ` : ""}
 
 ${t.completedBy ? `
-<p class="small">
-  <b>Completed By:</b> ${esc(t.completedBy)}
-</p>
+<span class="badge">
+  Completed By: ${esc(t.completedBy)}
+</span>
 ` : ""}
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
@@ -613,8 +615,12 @@ window.viewTask = id => {
     <p><b>Status:</b> ${esc(t.status || "Open")}</p>
     <p><b>Priority:</b> ${esc(t.priority || "Medium Priority")}</p>
     <p><b>Description:</b> ${esc(t.description || "None")}</p>
+    <p><b>Requested By:</b> ${esc(t.requestedBy || "Unknown")}</p>
     ${t.startedBy ? `<p><b>Started By:</b> ${esc(t.startedBy)}</p>` : ""}
     ${t.completedBy ? `<p><b>Completed By:</b> ${esc(t.completedBy)}</p>` : ""}
+    ${t.completedAt ? `
+<p><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>
+` : ""}
     <p><b>Needed by:</b> ${esc(t.neededBy || "Not set")}</p>
     <p><b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
     <p><b>Assigned to:</b> ${esc(t.assignedTo || "Unassigned")}</p>
