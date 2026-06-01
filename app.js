@@ -361,7 +361,10 @@ function card(id, t) {
       <span class="badge">${esc(t.status)}</span>
       ${t.assignedTo ? `<span class="badge assigned">Accepted By: ${esc(t.assignedTo)}</span>` : ""}
       ${t.recurring && t.recurring !== "None" ? `<span class="badge">Repeats: ${esc(t.recurring)}</span>` : ""}
-      <p>${esc(t.description || "")}</p>
+
+<p class="small"><b>Requested By:</b> ${esc(t.requestedBy || "Unknown")}</p>
+
+<p>${esc(t.description || "")}</p>
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
       <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
@@ -371,8 +374,7 @@ function card(id, t) {
       <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
       <p class="small"><b>Quotes:</b> ${esc(t.quotes || "None")}</p>
       ${actions(id, t)}
-      <p class="small"><b>Requested By:</b> ${esc(t.requestedBy || "Unknown")}</p>
-    </article>
+      
   `;
 }
 
