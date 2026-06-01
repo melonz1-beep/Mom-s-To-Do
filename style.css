@@ -250,3 +250,6 @@ display:block;
 .actions button{
   width:100%;
 }
+.stat-card {
+  cursor: pointer;
+}
