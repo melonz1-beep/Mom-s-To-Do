@@ -362,7 +362,9 @@ function card(id, t) {
       ${t.assignedTo ? `<span class="badge assigned">Accepted By: ${esc(t.assignedTo)}</span>` : ""}
       ${t.recurring && t.recurring !== "None" ? `<span class="badge">Repeats: ${esc(t.recurring)}</span>` : ""}
 
-<p class="small"><b>Requested By:</b> ${esc(t.requestedBy || "Unknown")}</p>
+<span class="badge">
+  Requested By: ${esc(t.requestedBy || "Unknown")}
+</span>
 
 <p>${esc(t.description || "")}</p>
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
@@ -602,8 +604,7 @@ function renderNotifications() {
 
 window.viewTask = id => {
   const t = tasks[id];
-  ${t.startedBy ? `<p><b>Started By:</b> ${esc(t.startedBy)}</p>` : ""}
-${t.completedBy ? `<p><b>Completed By:</b> ${esc(t.completedBy)}</p>` : ""}
+  
 
   $("viewTitle").textContent = t.title || "Task Details";
 
@@ -612,6 +613,8 @@ ${t.completedBy ? `<p><b>Completed By:</b> ${esc(t.completedBy)}</p>` : ""}
     <p><b>Status:</b> ${esc(t.status || "Open")}</p>
     <p><b>Priority:</b> ${esc(t.priority || "Medium Priority")}</p>
     <p><b>Description:</b> ${esc(t.description || "None")}</p>
+    ${t.startedBy ? `<p><b>Started By:</b> ${esc(t.startedBy)}</p>` : ""}
+    ${t.completedBy ? `<p><b>Completed By:</b> ${esc(t.completedBy)}</p>` : ""}
     <p><b>Needed by:</b> ${esc(t.neededBy || "Not set")}</p>
     <p><b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
     <p><b>Assigned to:</b> ${esc(t.assignedTo || "Unassigned")}</p>
@@ -778,15 +781,6 @@ window.completeTask = id => {
     completedDate: new Date().toISOString().split("T")[0],
     completedBy: p.name
   });
-
-  addNotification(
-    `Task completed by ${p.name}: ${tasks[id]?.title || "Task"}`,
-    id
-  );
-};
-
-  addNotification("Task completed: " + (tasks[id]?.title || "Task"), id);
-};
 
 window.deleteNotification = id => {
   remove(ref(db, "notifications/" + id));
