@@ -356,44 +356,36 @@ function card(id, t) {
   return `
     <article class="card ${isPast ? "pastdue" : ""} ${isDone ? "completed" : ""}">
       <h3>${esc(t.title)}</h3>
+
       <span class="badge ${priorityClass(t.priority)}">${esc(t.priority)}</span>
       <span class="badge">${esc(t.category || "Other")}</span>
       <span class="badge">${esc(t.status)}</span>
+
       ${t.assignedTo ? `<span class="badge assigned">Accepted By: ${esc(t.assignedTo)}</span>` : ""}
+      ${t.requestedBy ? `<span class="badge">Requested By: ${esc(t.requestedBy)}</span>` : ""}
+      ${t.startedBy ? `<span class="badge">Started By: ${esc(t.startedBy)}</span>` : ""}
+      ${t.completedBy ? `<span class="badge">Completed By: ${esc(t.completedBy)}</span>` : ""}
       ${t.recurring && t.recurring !== "None" ? `<span class="badge">Repeats: ${esc(t.recurring)}</span>` : ""}
 
-<span class="badge">
-  Requested By: ${esc(t.requestedBy || "Unknown")}
-</span>
+      <p>${esc(t.description || "")}</p>
 
-<p>${esc(t.description || "")}</p>
       ${t.photoUrl ? `<img class="photo" src="${esc(t.photoUrl)}" alt="task photo">` : ""}
+
       <p class="small"><b>Needed by:</b> ${esc(t.neededBy || "Not set")} | <b>Planned:</b> ${esc(t.plannedDate || "Not set")}</p>
-      ${t.startedBy ? `
-
-  <span class="badge">Started By: ${esc(t.startedBy)}</span>
-` : ""}
-
-${t.completedBy ? `
-  <span class="badge">Completed By: ${esc(t.completedBy)}</span>
-` : ""}
       ${t.completedAt ? `<p class="small"><b>Completed:</b> ${new Date(t.completedAt).toLocaleDateString()}</p>` : ""}
+
       <p class="small"><b>Materials:</b> ${esc(t.materials || "None listed")}</p>
-<p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
-<p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
+      <p class="small"><b>Estimated Project Cost:</b> ${money(t.cost)}</p>
+      <p class="small"><b>Project:</b> ${esc(t.linkedProject || "None")}</p>
       <p class="small"><b>Notes:</b> ${esc(t.materialNotes || "None")}</p>
       <p class="small"><b>Quotes:</b> ${esc(t.quotes || "None")}</p>
+
       ${actions(id, t)}
-      
-  `;
-}
-${actions(id, t)}
     </article>
   `;
 }
-function actions(id, t) {
-  if (t.status === "Completed") {
-  return `
+
+
     <div class="actions">
       <button onclick="restoreTask('${id}')">Restore</button>
       <button onclick="deleteTask('${id}')">Delete</button>
