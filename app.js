@@ -385,8 +385,7 @@ function card(id, t) {
   `;
 }
 
-
-    <
+function actions(id, t) {
   if (t.status === "Completed") {
     return `
       <div class="actions">
@@ -396,14 +395,10 @@ function card(id, t) {
     `;
   }
 
-
   return `
     <div class="actions">
       <button onclick="viewTask('${id}')">View</button>
-      ${t.status === "Open"
-        ? `<button onclick="acceptTask('${id}')">Accept</button>`
-        : ""
-      }
+      ${t.status === "Open" ? `<button onclick="acceptTask('${id}')">Accept</button>` : ""}
       <button onclick="setStatus('${id}','Started')">Started</button>
       <button onclick="setStatus('${id}','In Progress')">In Progress</button>
       <button onclick="reschedule('${id}')">Reschedule</button>
