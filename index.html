@@ -69,33 +69,37 @@
 
   </nav>
 
-    <section id="dashboard" class="tab active">
-      <div class="stat-card clickable"
-     onclick="showTaskFilter('Open')">
-  <h1 id="openCount">0</h1>
-  <p>Open</p>
-</div>
+<section id="dashboard" class="tab active">
 
-<div class="stat-card clickable"
-     onclick="showTaskFilter('In Progress')">
-  <h1 id="progressCount">0</h1>
-  <p>In Progress</p>
-</div>
+  <div class="stats-grid">
 
-<div class="stat-card clickable"
-     onclick="showTaskFilter('Past Due')">
-  <h1 id="pastDueCount">0</h1>
-  <p>Past Due</p>
-</div>
+    <div class="stat-card clickable" onclick="showTaskFilter('Open')">
+      <h1 id="openCount">0</h1>
+      <p>Open</p>
+    </div>
 
-<div class="stat-card clickable"
-     onclick="showTaskFilter('Completed')">
-  <h1 id="doneCount">0</h1>
-  <p>Completed</p>
-</div>
-      <h2>Urgent & Past Due</h2>
-      <div id="urgentList" class="cards"></div>
-    </section>
+    <div class="stat-card clickable" onclick="showTaskFilter('In Progress')">
+      <h1 id="progressCount">0</h1>
+      <p>In Progress</p>
+    </div>
+
+    <div class="stat-card clickable" onclick="showTaskFilter('Past Due')">
+      <h1 id="pastDueCount">0</h1>
+      <p>Past Due</p>
+    </div>
+
+    <div class="stat-card clickable" onclick="showTaskFilter('Completed')">
+      <h1 id="doneCount">0</h1>
+      <p>Completed</p>
+    </div>
+
+  </div>
+
+  <h2>Urgent & Past Due</h2>
+  <div id="urgentList" class="cards"></div>
+
+</section>
+  
     <section id="register" class="tab">
 <section class="panel profile-panel">
   <h2>Register / Who are you?</h2>
